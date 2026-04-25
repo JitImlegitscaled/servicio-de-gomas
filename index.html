@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jimenez Tire & Brake | Mobile Tire Service — Tampa, FL</title>
+  <meta name="description" content="Mobile tire & brake service in Tampa, FL. We come to you — at your home, job, or wherever you are. Call (786) 416-2069." />
+  <meta property="og:title" content="Jimenez Tire & Brake | Mobile Tire Service — Tampa, FL" />
+  <meta property="og:description" content="New & used tires, flat repair, wheel balance, oil & brake services. We come to you. No shop visit needed." />
+  <meta property="og:image" content="brand assets/ChatGPT Image Apr 25, 2026, 06_07_43 PM.png" />
+  <link rel="icon" type="image/png" href="brand assets/ChatGPT Image Apr 25, 2026, 06_07_43 PM.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS CUSTOM PROPERTIES
+    ============================================================ */
+    :root {
+      --blue: #0099FF;
+      --blue-dim: #006FBB;
+      --blue-glow: rgba(0, 153, 255, 0.25);
+      --blue-glow-strong: rgba(0, 153, 255, 0.50);
+      --green-wa: #25D366;
+      --green-wa-dim: #1da851;
+      --green-wa-glow: rgba(37, 211, 102, 0.30);
+      --black: #0d0d0d;
+      --surface: #111111;
+      --surface-2: #181818;
+      --surface-3: #222222;
+      --border: rgba(0, 153, 255, 0.15);
+      --text: #f0f0f0;
+      --text-muted: #888;
+      --font-head: 'Bebas Neue', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --nav-h: 72px;
+      /* spacing tokens */
+      --sp-xs: 8px;
+      --sp-sm: 16px;
+      --sp-md: 32px;
+      --sp-lg: 64px;
+      --sp-xl: 120px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.7;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ============================================================
+       NOISE TEXTURE
+    ============================================================ */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
+
+    /* ============================================================
+       CUSTOM CURSOR
+    ============================================================ */
+    #cursor {
+      position: fixed;
+      top: 0; left: 0;
+      width: 20px; height: 20px;
+      border: 2px solid var(--blue);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s, height 0.2s, border-color 0.2s, background 0.2s;
+    }
+    #cursor.on-btn {
+      width: 44px; height: 44px;
+      border-color: var(--blue);
+      border-width: 3px;
+      animation: spin-cursor 0.8s linear infinite;
+    }
+    #cursor-dot {
+      position: fixed;
+      top: 0; left: 0;
+      width: 5px; height: 5px;
+      background: var(--blue);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+    }
+    @keyframes spin-cursor {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* ============================================================
+       SCROLL REVEAL — staggered fade-in-from-below
+    ============================================================ */
+    .js-ready .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible { opacity: 1 !important; transform: translateY(0) !important; }
+
+    .js-ready .reveal-left {
+      opacity: 0;
+      transform: translateX(-44px);
+      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal-left.visible { opacity: 1 !important; transform: translateX(0) !important; }
+
+    .js-ready .reveal-right {
+      opacity: 0;
+      transform: translateX(44px);
+      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal-right.visible { opacity: 1 !important; transform: translateX(0) !important; }
+
+    /* ============================================================
+       DIAGONAL CLIP DIVIDERS
+    ============================================================ */
+    .clip-top  { clip-path: polygon(0 4%, 100% 0, 100% 100%, 0 100%); margin-top: -2px; }
+    .clip-both { clip-path: polygon(0 4%, 100% 0, 100% 96%, 0 100%); }
+
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      background: transparent;
+      transition: height 0.35s ease, background 0.35s ease, backdrop-filter 0.35s ease, padding 0.35s ease;
+    }
+    #navbar.scrolled {
+      height: 56px;
+      background: rgba(13, 13, 13, 0.92);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(0, 153, 255, 0.12);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-head);
+      font-size: 22px;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .nav-logo img {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(204, 0, 0, 0.4));
+      transition: filter 0.25s ease, transform 0.25s ease;
+    }
+    .nav-logo:hover img {
+      filter: drop-shadow(0 0 14px rgba(204, 0, 0, 0.65));
+      transform: rotate(-5deg) scale(1.05);
+    }
+
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+    .nav-center a { color: var(--text); font-weight: 500; }
+    .nav-center svg { color: var(--blue); }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue);
+      color: #fff;
+      font-family: var(--font-head);
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      padding: 10px 22px;
+      border-radius: 3px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.2s ease, transform 0.18s ease;
+    }
+    .nav-cta:hover { background: var(--blue-dim); transform: translateY(-1px); }
+    .nav-cta:active { transform: translateY(0); }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: none;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    #mobile-menu {
+      position: fixed;
+      top: 0; right: -100%;
+      width: min(340px, 85vw);
+      height: 100vh;
+      background: var(--surface);
+      z-index: 999;
+      padding: 96px 40px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      border-left: 1px solid var(--border);
+    }
+    #mobile-menu.open { right: 0; }
+    #mobile-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 998;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    #mobile-overlay.open { opacity: 1; pointer-events: all; }
+    .mobile-link {
+      font-family: var(--font-head);
+      font-size: 28px;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      transition: color 0.2s ease;
+    }
+    .mobile-link:hover { color: var(--blue); }
+    .mobile-cta {
+      margin-top: 24px;
+      background: var(--blue);
+      color: #fff;
+      font-family: var(--font-head);
+      font-size: 18px;
+      letter-spacing: 0.06em;
+      padding: 14px 24px;
+      border-radius: 3px;
+      text-align: center;
+    }
+
+    /* ============================================================
+       HERO SECTION — dramatic, full-bleed, dark gradient + honeycomb
+    ============================================================ */
+    #hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 700px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Van image — fills entire hero with generous overflow for parallax */
+    #hero-bg {
+      position: absolute;
+      inset: -20%;
+      background-image: url('ChatGPT Image Apr 25, 2026, 05_46_42 PM.png');
+      background-size: cover;
+      background-position: center 40%;
+      background-color: #060d16;
+      will-change: transform;
+    }
+
+    /* Deep, dramatic gradient overlay — bottom-heavy */
+    #hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom,
+          rgba(13, 13, 13, 0.30) 0%,
+          rgba(13, 13, 13, 0.20) 30%,
+          rgba(13, 13, 13, 0.65) 65%,
+          rgba(13, 13, 13, 0.94) 100%),
+        radial-gradient(ellipse at 20% 55%, rgba(0, 50, 110, 0.55) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 30%, rgba(0, 25, 65, 0.40) 0%, transparent 55%);
+    }
+
+    /* Canvas for particle sparks */
+    #hero-canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Honeycomb SVG overlay — matches van wrap branding */
+    #hero-honeycomb {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0.09;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V16L28 0l28 16v34zm0 0l28 16v34L28 100 0 116v-34z' fill='none' stroke='%230099FF' stroke-width='1.2'/%3E%3C/svg%3E");
+      background-size: 56px 100px;
+      animation: honeycomb-drift 18s linear infinite;
+    }
+    @keyframes honeycomb-drift {
+      from { background-position: 0 0; }
+      to   { background-position: 56px 100px; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      padding: 0 24px;
+      max-width: 960px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+    }
+
+    .hero-headline {
+      font-family: var(--font-head);
+      font-size: clamp(80px, 14vw, 160px);
+      line-height: 0.88;
+      letter-spacing: -0.01em;
+      color: #fff;
+      opacity: 0;
+      animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
+      text-shadow: 0 6px 60px rgba(0, 0, 0, 0.7);
+    }
+    .hero-headline span { color: var(--blue); }
+
+    .hero-sub {
+      font-size: clamp(15px, 2vw, 19px);
+      font-weight: 400;
+      color: rgba(240, 240, 240, 0.82);
+      margin-top: 28px;
+      line-height: 1.55;
+      opacity: 0;
+      animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
+    }
+
+    .hero-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 44px;
+      opacity: 0;
+      animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.9s forwards;
+    }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================================
+       BUTTONS — differentiated Call vs WhatsApp
+    ============================================================ */
+    .btn {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--font-head);
+      letter-spacing: 0.08em;
+      border-radius: 3px;
+      border: 2px solid transparent;
+      cursor: none;
+      transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.18s ease;
+    }
+    .btn:hover  { transform: translateY(-3px); }
+    .btn:active { transform: translateY(0); }
+
+    /* Blue / Call Now — primary, larger */
+    .btn-blue {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+      font-size: 17px;
+      padding: 16px 36px;
+      box-shadow: 0 4px 28px var(--blue-glow);
+    }
+    .btn-blue:hover {
+      background: var(--blue-dim);
+      box-shadow: 0 8px 44px var(--blue-glow-strong);
+    }
+
+    /* Green / WhatsApp — secondary, slightly smaller */
+    .btn-green {
+      background: var(--green-wa);
+      color: #fff;
+      border-color: var(--green-wa);
+      font-size: 15px;
+      padding: 14px 28px;
+      box-shadow: 0 4px 24px var(--green-wa-glow);
+    }
+    .btn-green:hover {
+      background: var(--green-wa-dim);
+      box-shadow: 0 8px 40px rgba(37, 211, 102, 0.45);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--blue);
+      border-color: var(--blue);
+      font-size: 15px;
+      padding: 14px 28px;
+    }
+    .btn-outline:hover { background: var(--blue-glow); }
+
+    /* Ripple */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      width: 10px; height: 10px;
+      background: rgba(255, 255, 255, 0.35);
+      transform: scale(0);
+      animation: ripple-anim 0.55s linear;
+      pointer-events: none;
+    }
+    @keyframes ripple-anim { to { transform: scale(28); opacity: 0; } }
+
+    /* Scroll arrow */
+    .hero-arrow {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fade-up 1s ease 1.4s forwards;
+    }
+    .hero-arrow svg { animation: bounce-arrow 2s ease-in-out infinite; }
+    @keyframes bounce-arrow {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(8px); }
+    }
+
+    /* ============================================================
+       SECTION SHARED
+    ============================================================ */
+    section { position: relative; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(42px, 6vw, 76px);
+      letter-spacing: 0.02em;
+      line-height: 1;
+      color: #fff;
+    }
+    .section-title span { color: var(--blue); }
+
+    /* ============================================================
+       SERVICES SECTION
+    ============================================================ */
+    #services {
+      background: var(--black);
+      padding: var(--sp-xl) 40px 180px;
+      position: relative;
+      z-index: 1;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 60px), 0 100%);
+    }
+    #services .section-head {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 28px;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .services-grid .service-card           { grid-column: span 2; }
+    .services-grid .service-card:nth-child(4) { grid-column: 2 / span 2; }
+    .services-grid .service-card:nth-child(5) { grid-column: 4 / span 2; }
+
+    .service-card {
+      background: var(--surface-2);
+      border: 1px solid rgba(0, 153, 255, 0.10);
+      border-radius: 8px;
+      padding: 44px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.35s ease,
+                  box-shadow 0.35s ease;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0, 153, 255, 0.05) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--blue);
+      box-shadow:
+        0 0 0 1px rgba(0, 153, 255, 0.25),
+        0 8px 48px rgba(0, 153, 255, 0.30),
+        0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+    .service-card:hover::before { opacity: 1; }
+
+    /* 48px icons */
+    .service-icon {
+      width: 64px; height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 153, 255, 0.10);
+      border-radius: 14px;
+      color: var(--blue);
+      flex-shrink: 0;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                  background 0.35s ease;
+    }
+    .service-icon svg { width: 48px; height: 48px; }
+    .service-card:hover .service-icon {
+      transform: rotate(8deg) scale(1.08);
+      background: rgba(0, 153, 255, 0.18);
+    }
+
+    .service-name {
+      font-family: var(--font-head);
+      font-size: 24px;
+      letter-spacing: 0.04em;
+      color: #fff;
+    }
+    .service-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .service-line {
+      width: 32px;
+      height: 2px;
+      background: var(--blue);
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+    .service-card:hover .service-line { width: 60px; }
+
+    /* ============================================================
+       HOW IT WORKS
+    ============================================================ */
+    #how {
+      background: var(--surface);
+      padding: var(--sp-xl) 40px 180px;
+      clip-path: polygon(0 60px, 100% 0, 100% calc(100% - 60px), 0 100%);
+      margin-top: -60px;
+      position: relative;
+      z-index: 2;
+    }
+    #how .section-head {
+      text-align: center;
+      margin-bottom: 88px;
+    }
+
+    .steps-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      max-width: 960px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-num {
+      font-family: var(--font-head);
+      font-size: 80px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: transparent;
+      -webkit-text-stroke: 2px rgba(0, 153, 255, 0.3);
+      margin-bottom: 24px;
+    }
+
+    .step-icon-wrap {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: rgba(0, 153, 255, 0.10);
+      border: 1.5px solid rgba(0, 153, 255, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      margin-bottom: 24px;
+    }
+
+    .step-title {
+      font-family: var(--font-head);
+      font-size: 22px;
+      letter-spacing: 0.04em;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .step-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .step-connector {
+      flex: 0 0 80px;
+      align-self: flex-start;
+      margin-top: 168px;
+      height: 2px;
+      overflow: visible;
+    }
+    .step-connector svg { width: 100%; height: 2px; overflow: visible; }
+    .step-connector line {
+      stroke: var(--blue);
+      stroke-width: 2;
+      stroke-dasharray: 8 6;
+      stroke-dashoffset: 200;
+      transition: stroke-dashoffset 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .step-connector.drawn line { stroke-dashoffset: 0; }
+
+    /* ============================================================
+       ABOUT / OUR TRUCK
+    ============================================================ */
+    #about {
+      background: #0d0d14;
+      padding: var(--sp-xl) 40px 180px;
+      clip-path: polygon(0 60px, 100% 0, 100% calc(100% - 60px), 0 100%);
+      margin-top: -60px;
+      position: relative;
+      z-index: 2;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .about-text .section-label { margin-bottom: 18px; }
+    .about-text p {
+      font-size: 16px;
+      color: rgba(240, 240, 240, 0.8);
+      line-height: 1.85;
+      margin-top: 24px;
+    }
+    .about-text p + p { margin-top: 16px; }
+
+    .about-img-wrap { position: relative; }
+    .about-img-inner {
+      position: relative;
+      display: inline-block;
+      transform: rotate(-2deg);
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      width: 100%;
+    }
+    .about-img-inner:hover { transform: rotate(0deg); }
+    .about-img-inner img { width: 100%; border-radius: 6px; display: block; }
+    .about-img-inner::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border: 2px solid var(--blue);
+      border-radius: 8px;
+      opacity: 0.55;
+      transform: rotate(1.5deg);
+      z-index: -1;
+    }
+    .about-img-inner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 6px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.65), 0 4px 24px var(--blue-glow);
+    }
+
+    /* ============================================================
+       WHY CHOOSE US — giant electric-blue stats
+    ============================================================ */
+    #why {
+      background: var(--surface);
+      padding: var(--sp-xl) 40px 180px;
+      clip-path: polygon(0 60px, 100% 0, 100% calc(100% - 60px), 0 100%);
+      margin-top: -60px;
+      position: relative;
+      z-index: 3;
+    }
+    #why::before {
+      content: '';
+      position: absolute;
+      top: 62px; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 5%, var(--blue) 50%, transparent 95%);
+      opacity: 0.55;
+    }
+    #why .section-head {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .why-box {
+      background: var(--surface-2);
+      border: 1px solid rgba(0, 153, 255, 0.10);
+      border-radius: 8px;
+      padding: 52px 36px 44px;
+      text-align: center;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .why-box:hover {
+      border-color: rgba(0, 153, 255, 0.45);
+      box-shadow: 0 4px 40px var(--blue-glow);
+      transform: translateY(-4px);
+    }
+
+    /* Giant stat number — 80px+, Bebas Neue, electric blue */
+    .why-stat {
+      font-family: var(--font-head);
+      font-size: clamp(80px, 9vw, 96px);
+      letter-spacing: -0.02em;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: 14px;
+      text-shadow: 0 0 40px rgba(0, 153, 255, 0.45);
+    }
+    .why-label {
+      font-family: var(--font-head);
+      font-size: 20px;
+      letter-spacing: 0.06em;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .why-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ============================================================
+       COVERAGE AREA
+    ============================================================ */
+    #coverage {
+      background: var(--black);
+      padding: var(--sp-xl) 40px 160px;
+      text-align: center;
+      clip-path: polygon(0 60px, 100% 0, 100% 100%, 0 100%);
+      margin-top: -60px;
+      position: relative;
+      z-index: 4;
+    }
+    #coverage .section-head { margin-bottom: 36px; }
+    #coverage p {
+      font-size: 16px;
+      color: rgba(240, 240, 240, 0.7);
+      line-height: 1.85;
+      max-width: 600px;
+      margin: 0 auto 44px;
+    }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    }
+    .pill:hover {
+      border-color: var(--blue);
+      background: rgba(0, 153, 255, 0.09);
+      transform: translateY(-2px);
+    }
+    .pill svg { color: var(--blue); }
+
+    /* ============================================================
+       CONTACT SECTION
+    ============================================================ */
+    #contact {
+      background: var(--surface);
+      padding: var(--sp-xl) 40px 160px;
+      text-align: center;
+      clip-path: polygon(0 60px, 100% 0, 100% calc(100% - 60px), 0 100%);
+      margin-top: -60px;
+      position: relative;
+      z-index: 5;
+    }
+    .contact-phone {
+      font-family: var(--font-head);
+      font-size: clamp(48px, 8vw, 100px);
+      letter-spacing: 0.02em;
+      color: #fff;
+      display: inline-block;
+      margin: 28px 0;
+      transition: color 0.2s ease, text-shadow 0.2s ease;
+    }
+    .contact-phone:hover {
+      color: var(--blue);
+      text-shadow: 0 0 40px var(--blue-glow-strong), 0 0 80px var(--blue-glow);
+      animation: pulse-glow 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { text-shadow: 0 0 30px var(--blue-glow-strong); }
+      50%       { text-shadow: 0 0 60px rgba(0, 153, 255, 0.6), 0 0 100px var(--blue-glow); }
+    }
+    .contact-email {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 44px;
+      display: block;
+    }
+    .contact-email a { color: var(--blue); transition: color 0.2s; }
+    .contact-email a:hover { color: #fff; }
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* ============================================================
+       FOOTER — clean 3-row layout
+    ============================================================ */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(0, 153, 255, 0.10);
+      padding: 80px 40px 52px;
+      margin-top: -60px;
+      position: relative;
+      z-index: 6;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      text-align: center;
+    }
+
+    /* Row 1: business name large */
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .footer-logo {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 16px rgba(204, 0, 0, 0.35));
+    }
+    .footer-name {
+      font-family: var(--font-head);
+      font-size: clamp(32px, 5vw, 52px);
+      letter-spacing: 0.04em;
+      color: #fff;
+      line-height: 1;
+    }
+    .footer-name span { color: var(--blue); }
+    .footer-tagline {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 8px;
+      letter-spacing: 0.06em;
+    }
+
+    /* Row 2: single clean link row */
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 24px 0;
+      width: 100%;
+    }
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover { color: var(--blue); }
+
+    /* Row 3: copyright small */
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(136, 136, 136, 0.45);
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 900px) {
+      .services-grid .service-card { grid-column: span 3 !important; }
+      .why-grid  { grid-template-columns: repeat(3, 1fr); }
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .about-img-wrap { max-width: 480px; margin: 0 auto; }
+    }
+
+    @media (max-width: 720px) {
+      :root { --nav-h: 60px; }
+      #navbar { padding: 0 20px; }
+      .nav-center, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .services-grid { grid-template-columns: 1fr; }
+      .services-grid .service-card { grid-column: 1 !important; }
+      .why-grid { grid-template-columns: 1fr; }
+      .steps-row { flex-direction: column; align-items: center; gap: 48px; }
+      .step-connector { display: none; }
+      #services { padding: 80px 20px 110px; }
+      #how      { padding: 110px 20px 130px; clip-path: polygon(0 40px, 100% 0, 100% calc(100% - 40px), 0 100%); margin-top: -40px; }
+      #about    { padding: 110px 20px 130px; clip-path: polygon(0 40px, 100% 0, 100% calc(100% - 40px), 0 100%); margin-top: -40px; }
+      #why      { padding: 110px 20px 130px; clip-path: polygon(0 40px, 100% 0, 100% calc(100% - 40px), 0 100%); margin-top: -40px; }
+      #coverage { padding: 110px 20px 130px; clip-path: polygon(0 40px, 100% 0, 100% 100%, 0 100%); margin-top: -40px; }
+      #contact  { padding: 110px 20px 130px; clip-path: polygon(0 40px, 100% 0, 100% calc(100% - 40px), 0 100%); margin-top: -40px; }
+      footer    { margin-top: -40px; padding: 60px 20px 40px; }
+      .hero-headline { font-size: clamp(64px, 18vw, 110px); }
+      .why-stat { font-size: clamp(72px, 18vw, 88px); }
+    }
+
+    @media (max-width: 480px) {
+      .btn-blue  { padding: 14px 24px; font-size: 15px; }
+      .btn-green { padding: 12px 22px; font-size: 13px; }
+      .contact-phone { font-size: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CUSTOM CURSOR -->
+  <div id="cursor"></div>
+  <div id="cursor-dot"></div>
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <a href="#hero" class="nav-logo">
+      <img src="brand assets/ChatGPT Image Apr 25, 2026, 06_07_43 PM.png" alt="Jimenez Tire &amp; Brake logo" width="44" height="44" />
+      Jimenez Tire &amp; Brake
+    </a>
+
+    <div class="nav-center">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.54-.54a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/>
+      </svg>
+      <a href="tel:7864162069">(786) 416-2069</a>
+    </div>
+
+    <a href="tel:7864162069" class="nav-cta btn-hover-target">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.54-.54a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/>
+      </svg>
+      Call Now
+    </a>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div id="mobile-overlay" role="presentation"></div>
+  <div id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+    <a href="#services" class="mobile-link">Services</a>
+    <a href="#how" class="mobile-link">How It Works</a>
+    <a href="#about" class="mobile-link">About Us</a>
+    <a href="#why" class="mobile-link">Why Choose Us</a>
+    <a href="#coverage" class="mobile-link">Coverage</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+    <a href="tel:7864162069" class="mobile-cta btn-hover-target">Call Now — (786) 416-2069</a>
+  </div>
+
+  <!-- ============================================================
+       HERO SECTION
+  ============================================================ -->
+  <section id="hero" aria-label="Hero">
+    <div id="hero-bg" role="img" aria-label="Jimenez Tire and Brake van"></div>
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div id="hero-honeycomb" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">Tampa &amp; Surrounding Areas</p>
+      <h1 class="hero-headline">We Come<br><span>To You.</span></h1>
+      <p class="hero-sub">Mobile Tire &amp; Brake Service — at your home, job, or wherever you are.<br>No shop visit needed.</p>
+      <div class="hero-buttons">
+        <a href="tel:7864162069" class="btn btn-blue btn-hover-target" onclick="addRipple(event)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.54-.54a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/>
+          </svg>
+          CALL NOW — (786) 416-2069
+        </a>
+        <a href="https://wa.me/17864162069" class="btn btn-green btn-hover-target" onclick="addRipple(event)" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+          </svg>
+          WHATSAPP US
+        </a>
+      </div>
+    </div>
+
+    <a href="#services" class="hero-arrow" aria-label="Scroll down">
+      <span>Scroll</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </a>
+  </section>
+
+  <!-- ============================================================
+       SERVICES SECTION
+  ============================================================ -->
+  <section id="services" aria-labelledby="services-title">
+    <div class="section-head reveal">
+      <p class="section-label">What We Offer</p>
+      <h2 class="section-title" id="services-title">What We <span>Do</span></h2>
+    </div>
+
+    <div class="services-grid">
+
+      <article class="service-card reveal" style="transition-delay:0ms">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/>
+            <line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/>
+            <line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/>
+          </svg>
+        </div>
+        <div class="service-line"></div>
+        <h3 class="service-name">New &amp; Used Tires</h3>
+        <p class="service-desc">Full selection of new and quality used tires installed at your location.</p>
+      </article>
+
+      <article class="service-card reveal" style="transition-delay:100ms">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div class="service-line"></div>
+        <h3 class="service-name">Flat Tire Repair</h3>
+        <p class="service-desc">Stuck with a flat? We come to you and get you back on the road fast.</p>
+      </article>
+
+      <article class="service-card reveal" style="transition-delay:200ms">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+        </div>
+        <div class="service-line"></div>
+        <h3 class="service-name">Wheel Balance</h3>
+        <p class="service-desc">Eliminate vibration and uneven wear with precision wheel balancing.</p>
+      </article>
+
+      <article class="service-card reveal" style="transition-delay:300ms">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 12c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2z"/><circle cx="12" cy="12" r="9"/>
+            <path d="M12 3v2M12 19v2M3 12h2M19 12h2"/>
+          </svg>
+        </div>
+        <div class="service-line"></div>
+        <h3 class="service-name">Oil &amp; Brake Services</h3>
+        <p class="service-desc">Oil changes and brake service performed right in your driveway or parking lot.</p>
+      </article>
+
+      <article class="service-card reveal" style="transition-delay:400ms">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+          </svg>
+        </div>
+        <div class="service-line"></div>
+        <h3 class="service-name">Tire Rotation</h3>
+        <p class="service-desc">Extend tire life and improve handling with regular rotations at your location.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HOW IT WORKS
+  ============================================================ -->
+  <section id="how" aria-labelledby="how-title">
+    <div class="section-head reveal">
+      <p class="section-label">Simple Process</p>
+      <h2 class="section-title" id="how-title">How It <span>Works</span></h2>
+    </div>
+
+    <div class="steps-row" id="steps-row">
+
+      <div class="step reveal" style="transition-delay:0ms">
+        <div class="step-num">01</div>
+        <div class="step-icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.54-.54a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/>
+          </svg>
+        </div>
+        <h3 class="step-title">Call or Text Us</h3>
+        <p class="step-desc">Call or text <a href="tel:7864162069" style="color:var(--blue)">(786) 416-2069</a> and tell us what you need and where you are.</p>
+      </div>
+
+      <div class="step-connector" id="connector-1" aria-hidden="true">
+        <svg width="100%" height="2" preserveAspectRatio="none">
+          <line x1="0" y1="1" x2="100%" y2="1"/>
+        </svg>
+      </div>
+
+      <div class="step reveal" style="transition-delay:200ms">
+        <div class="step-num">02</div>
+        <div class="step-icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+            <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+        </div>
+        <h3 class="step-title">We Come to You</h3>
+        <p class="step-desc">Our fully equipped van shows up at your home, office, or wherever you need us.</p>
+      </div>
+
+      <div class="step-connector" id="connector-2" aria-hidden="true">
+        <svg width="100%" height="2" preserveAspectRatio="none">
+          <line x1="0" y1="1" x2="100%" y2="1"/>
+        </svg>
+      </div>
+
+      <div class="step reveal" style="transition-delay:400ms">
+        <div class="step-num">03</div>
+        <div class="step-icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <h3 class="step-title">Drive Away Fixed</h3>
+        <p class="step-desc">We handle the job on-site, clean up, and you're back on the road — no waiting room required.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ABOUT US / OUR TRUCK
+  ============================================================ -->
+  <section id="about" aria-labelledby="about-title">
+    <div class="about-grid">
+      <div class="about-text reveal-left">
+        <p class="section-label">Our Story</p>
+        <h2 class="section-title" id="about-title">Built for the <span>Road</span></h2>
+        <p>Adrian Jimenez has been working on tires and brakes for over 10 years — and he decided there was a better way. Instead of making you drive to a shop and wait for hours, he brought the shop to you.</p>
+        <p>With a fully stocked service van, Jimenez Tire &amp; Brake rolls to homes, job sites, parking lots, and anywhere across Tampa Bay. Same professional service. Zero wasted time.</p>
+        <p>Serving Tampa, Brandon, Hillsborough County, St. Petersburg, Clearwater, and all surrounding areas — 7 days a week.</p>
+        <div style="margin-top:40px;display:flex;gap:16px;flex-wrap:wrap">
+          <a href="tel:7864162069" class="btn btn-blue btn-hover-target" onclick="addRipple(event)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.54-.54a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+            Call Now
+          </a>
+          <a href="https://wa.me/17864162069" class="btn btn-green btn-hover-target" target="_blank" rel="noopener">
+            WhatsApp Us
+          </a>
+        </div>
+      </div>
+
+      <div class="about-img-wrap reveal-right">
+        <div class="about-img-inner">
+          <img src="images/van2.jpg" alt="Jimenez Tire and Brake service van — rear view" loading="lazy" width="600" height="400"
+               onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/0099FF?text=Our+Service+Van'" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHY CHOOSE US
+  ============================================================ -->
+  <section id="why" aria-labelledby="why-title">
+    <div class="section-head reveal">
+      <p class="section-label">Our Advantage</p>
+      <h2 class="section-title" id="why-title">Why Choose <span>Us</span></h2>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-box reveal" style="transition-delay:0ms">
+        <div class="why-stat" data-count="10" data-suffix="+">0+</div>
+        <div class="why-label">Years Experience</div>
+        <p class="why-sub">Over a decade of hands-on tire and brake expertise in Tampa Bay.</p>
+      </div>
+      <div class="why-box reveal" style="transition-delay:120ms">
+        <div class="why-stat">7 Days</div>
+        <div class="why-label">Available Every Week</div>
+        <p class="why-sub">We work when you need us — weekdays, weekends, and evenings.</p>
+      </div>
+      <div class="why-box reveal" style="transition-delay:240ms">
+        <div class="why-stat">0</div>
+        <div class="why-label">Shop Visits Required</div>
+        <p class="why-sub">We come to you. No driving to a shop, no waiting rooms, no wasted time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COVERAGE AREA
+  ============================================================ -->
+  <section id="coverage" aria-labelledby="coverage-title">
+    <div class="section-head reveal">
+      <p class="section-label">Service Area</p>
+      <h2 class="section-title" id="coverage-title">Serving Tampa <span>&amp; Beyond</span></h2>
+    </div>
+    <p class="reveal">We travel across the entire Tampa Bay area to bring professional mobile tire and brake service directly to you — wherever you are.</p>
+    <div class="pill-row reveal">
+      <span class="pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Tampa</span>
+      <span class="pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Brandon</span>
+      <span class="pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Hillsborough County</span>
+      <span class="pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>St. Petersburg</span>
+      <span class="pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Clearwater</span>
+      <span class="pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Riverview</span>
+      <span class="pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Valrico</span>
+      <span class="pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>And Surrounding Areas</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT SECTION
+  ============================================================ -->
+  <section id="contact" aria-labelledby="contact-title">
+    <div class="section-head reveal">
+      <p class="section-label">Reach Us</p>
+      <h2 class="section-title" id="contact-title">Get In <span>Touch</span></h2>
+    </div>
+    <p class="reveal" style="font-size:15px;color:var(--text-muted);margin-bottom:8px">Ready to roll? Give us a call or send a message.</p>
+    <a href="tel:7864162069" class="contact-phone reveal btn-hover-target">(786) 416-2069</a>
+    <span class="contact-email reveal">Email: <a href="mailto:adrian56@myyahoo.com">adrian56@myyahoo.com</a></span>
+    <div class="contact-buttons reveal">
+      <a href="tel:7864162069" class="btn btn-blue btn-hover-target" onclick="addRipple(event)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.54-.54a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/>
+        </svg>
+        Call Now
+      </a>
+      <a href="https://wa.me/17864162069" class="btn btn-green btn-hover-target" onclick="addRipple(event)" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+        </svg>
+        Message on WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER — clean 3-row layout
+  ============================================================ -->
+  <footer>
+    <div class="footer-inner">
+
+      <!-- Row 1: logo + business name -->
+      <div class="footer-brand">
+        <img src="brand assets/ChatGPT Image Apr 25, 2026, 06_07_43 PM.png" alt="Jimenez Tire &amp; Brake logo" class="footer-logo" width="80" height="80" />
+        <div>
+          <div class="footer-name">Jimenez Tire &amp; <span>Brake</span></div>
+          <div class="footer-tagline">Mobile Tire &amp; Brake Service — Tampa, FL</div>
+        </div>
+      </div>
+
+      <!-- Row 2: single clean link row -->
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="#services">Services</a>
+        <a href="#how">How It Works</a>
+        <a href="#about">About Us</a>
+        <a href="#why">Why Choose Us</a>
+        <a href="#coverage">Coverage</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <!-- Row 3: copyright -->
+      <div class="footer-copy">&copy; 2025 Jimenez Tire &amp; Brake. All rights reserved. Tampa, FL &mdash; (786) 416-2069</div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+  /* CUSTOM CURSOR */
+  (function() {
+    const cursor = document.getElementById('cursor');
+    const dot    = document.getElementById('cursor-dot');
+    let mx = -100, my = -100, cx = -100, cy = -100;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; dot.style.opacity = '0'; });
+    document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; dot.style.opacity = '1'; });
+    function animCursor() {
+      cx += (mx - cx) * 0.15;
+      cy += (my - cy) * 0.15;
+      cursor.style.left = cx + 'px';
+      cursor.style.top  = cy + 'px';
+      dot.style.left = mx + 'px';
+      dot.style.top  = my + 'px';
+      requestAnimationFrame(animCursor);
+    }
+    animCursor();
+    document.querySelectorAll('.btn-hover-target, .btn, .service-card, .pill, a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('on-btn'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('on-btn'));
+    });
+  })();
+
+  /* RIPPLE */
+  function addRipple(e) {
+    const btn = e.currentTarget;
+    const r = document.createElement('span');
+    r.className = 'ripple';
+    const rect = btn.getBoundingClientRect();
+    r.style.left = (e.clientX - rect.left - 5) + 'px';
+    r.style.top  = (e.clientY - rect.top  - 5) + 'px';
+    btn.appendChild(r);
+    r.addEventListener('animationend', () => r.remove());
+  }
+
+  /* NAVBAR SCROLL SHRINK */
+  (function() {
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  })();
+
+  /* HERO PARALLAX */
+  (function() {
+    const bg = document.getElementById('hero-bg');
+    window.addEventListener('scroll', () => {
+      bg.style.transform = 'translateY(' + (window.scrollY * 0.5) + 'px)';
+    }, { passive: true });
+  })();
+
+  /* CANVAS SPARK PARTICLES */
+  (function() {
+    const canvas = document.getElementById('hero-canvas');
+    const ctx    = canvas.getContext('2d');
+    let W, H, particles = [];
+    function resize() {
+      W = canvas.width  = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+    }
+    window.addEventListener('resize', resize, { passive: true });
+    resize();
+    function Particle() { this.reset(); }
+    Particle.prototype.reset = function() {
+      this.x = Math.random() * W;
+      this.y = Math.random() * H;
+      this.vx = (Math.random() - 0.5) * 0.6;
+      this.vy = -(Math.random() * 0.8 + 0.2);
+      this.life = this.maxLife = Math.random() * 120 + 60;
+      this.size = Math.random() * 2.2 + 0.4;
+      this.type = Math.random() > 0.7 ? 'spark' : 'dot';
+    };
+    Particle.prototype.update = function() {
+      this.x += this.vx; this.y += this.vy;
+      this.vy -= 0.008; this.vx += (Math.random() - 0.5) * 0.04;
+      if (--this.life <= 0) this.reset();
+    };
+    Particle.prototype.draw = function() {
+      const alpha = (this.life / this.maxLife) * 0.55;
+      ctx.save(); ctx.globalAlpha = alpha;
+      if (this.type === 'spark') {
+        ctx.strokeStyle = '#0099FF'; ctx.lineWidth = 0.8;
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(this.x - this.vx * 8, this.y - this.vy * 8);
+        ctx.stroke();
+      } else {
+        const g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 2);
+        g.addColorStop(0, 'rgba(0,153,255,1)');
+        g.addColorStop(1, 'rgba(0,153,255,0)');
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+    };
+    for (let i = 0; i < 90; i++) particles.push(new Particle());
+    function loop() {
+      ctx.clearRect(0, 0, W, H);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(loop);
+    }
+    loop();
+  })();
+
+  /* SCROLL REVEAL — staggered fade-in-from-below via Intersection Observer */
+  (function() {
+    document.body.classList.add('js-ready');
+    const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const io  = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(el => io.observe(el));
+  })();
+
+  /* CONNECTOR LINE DRAW */
+  (function() {
+    const c1 = document.getElementById('connector-1');
+    const c2 = document.getElementById('connector-2');
+    if (!c1 || !c2) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('drawn'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    [c1, c2].forEach(el => io.observe(el));
+  })();
+
+  /* COUNT-UP ANIMATION */
+  (function() {
+    const stats = document.querySelectorAll('.why-stat[data-count]');
+    const io    = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const target = parseInt(el.dataset.count, 10);
+        const suffix = el.dataset.suffix || '';
+        let current = 0;
+        const step  = Math.ceil(target / 40);
+        const timer = setInterval(() => {
+          current = Math.min(current + step, target);
+          el.textContent = current + suffix;
+          if (current >= target) clearInterval(timer);
+        }, 40);
+        io.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    stats.forEach(el => io.observe(el));
+  })();
+
+  /* MOBILE MENU */
+  (function() {
+    const btn     = document.getElementById('hamburger');
+    const menu    = document.getElementById('mobile-menu');
+    const overlay = document.getElementById('mobile-overlay');
+    function open()  { menu.classList.add('open'); overlay.classList.add('open'); btn.classList.add('open'); btn.setAttribute('aria-expanded', 'true');  document.body.style.overflow = 'hidden'; }
+    function close() { menu.classList.remove('open'); overlay.classList.remove('open'); btn.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; }
+    btn.addEventListener('click', () => btn.classList.contains('open') ? close() : open());
+    overlay.addEventListener('click', close);
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  })();
+
+  /* SMOOTH SCROLL */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const el = document.getElementById(a.getAttribute('href').slice(1));
+      if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+  </script>
+</body>
+</html>
