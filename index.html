@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Jimenez Tire & Brake | Mobile Tire Service — Tampa, FL</title>
   <meta name="description" content="Mobile tire & brake service in Tampa, FL. We come to you — at your home, job, or wherever you are. Call (786) 416-2069." />
   <meta property="og:title" content="Jimenez Tire & Brake | Mobile Tire Service — Tampa, FL" />
   <meta property="og:description" content="New & used tires, flat repair, wheel balance, oil & brake services. We come to you. No shop visit needed." />
-  <meta property="og:image" content="brand assets/ChatGPT Image Apr 25, 2026, 06_07_43 PM.png" />
-  <link rel="icon" type="image/png" href="brand assets/ChatGPT Image Apr 25, 2026, 06_07_43 PM.png" />
+  <meta property="og:image" content="brand%20assets/ChatGPT%20Image%20Apr%2025%2C%202026%2C%2006_07_43%20PM.png" />
+  <link rel="icon" type="image/png" href="brand%20assets/ChatGPT%20Image%20Apr%2025%2C%202026%2C%2006_07_43%20PM.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,13 +26,13 @@
       --green-wa: #25D366;
       --green-wa-dim: #1da851;
       --green-wa-glow: rgba(37, 211, 102, 0.30);
-      --black: #0d0d0d;
-      --surface: #111111;
-      --surface-2: #181818;
-      --surface-3: #222222;
+      --black: #111318;
+      --surface: #161a22;
+      --surface-2: #1d2230;
+      --surface-3: #252c3a;
       --border: rgba(0, 200, 248, 0.15);
       --text: #f0f0f0;
-      --text-muted: #888;
+      --text-muted: #aab;
       --font-head: 'Bebas Neue', sans-serif;
       --font-body: 'Barlow', sans-serif;
       --nav-h: 88px;
@@ -45,7 +45,28 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+      -moz-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      overflow-x: hidden;
+    }
+    /* Global button reset — prevents browser UA stylesheet adding backgrounds */
+    button {
+      background: none !important;
+      background-color: transparent !important;
+      border: none;
+      padding: 0;
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+      -webkit-appearance: none;
+      appearance: none;
+      -webkit-tap-highlight-color: transparent;
+      color-scheme: dark;
+    }
 
     body {
       background: var(--black);
@@ -60,9 +81,10 @@
     @media (hover: none) and (pointer: coarse) {
       body { cursor: auto; }
       #cursor, #cursor-dot { display: none !important; }
-      .btn, .hamburger, .lang-btn, .cal-nav, .svc-card,
+      .btn, .hamburger, .lang-btn, .lang-toggle, .cal-nav, .svc-card,
       .time-slot, .booking-submit, .booking-reset,
-      .cal-day, .pill { cursor: pointer; }
+      .cal-day, .pill, .nav-link, .mobile-link, .mobile-cta,
+      a, button, [role="button"] { cursor: pointer; }
     }
 
     a { text-decoration: none; color: inherit; }
@@ -73,7 +95,7 @@
     button, [role="button"], input, select, textarea {
       touch-action: manipulation;
     }
-    .btn, .nav-cta, .mobile-cta, .booking-submit, .booking-reset {
+    .btn, .mobile-cta, .booking-submit, .booking-reset {
       min-height: 44px;
     }
     .cal-nav { min-height: 44px; min-width: 44px; }
@@ -141,7 +163,7 @@
 
     .js-ready .reveal-left {
       opacity: 0;
-      transform: translateX(-44px);
+      transform: translateX(-24px);
       transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
                   transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
     }
@@ -149,7 +171,7 @@
 
     .js-ready .reveal-right {
       opacity: 0;
-      transform: translateX(44px);
+      transform: translateX(24px);
       transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
                   transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
     }
@@ -273,6 +295,9 @@
       overflow: hidden;
       transition: background 0.2s ease, transform 0.18s ease, box-shadow 0.18s ease;
       box-shadow: 0 2px 16px rgba(0, 200, 248, 0.30);
+      /* Prevent browser from applying any visited/default link background */
+      -webkit-appearance: none;
+      appearance: none;
     }
     .nav-cta:hover {
       background: var(--blue-dim);
@@ -315,62 +340,131 @@
     .lang-btn:hover:not(.active) { color: var(--text); }
     .lang-btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 
-    /* hamburger */
+    /* hamburger — div[role=button] to avoid all UA button styling */
     .hamburger {
       display: none;
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
       gap: 5px;
-      cursor: none;
+      cursor: pointer;
       padding: 6px;
+      background: none;
+      border: none;
+      border-radius: 0;
+      outline: none;
+      box-shadow: none;
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      overflow: visible;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
     }
-    .hamburger span {
-      display: block;
-      width: 26px;
-      height: 2px;
-      background: var(--text);
-      border-radius: 2px;
-      transition: transform 0.3s ease, opacity 0.3s ease;
+    /* Extra specificity for stubborn mobile browsers */
+    .hamburger,
+    .hamburger:hover,
+    .hamburger:active,
+    .hamburger:focus {
+      background: none !important;
+      background-color: transparent !important;
+      box-shadow: none !important;
+      border: none !important;
     }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .hamburger svg { pointer-events: none; display: block; }
+    .hb-top {
+      transform-origin: center;
+      transform: translateY(-7px);
+      transition: transform 0.3s cubic-bezier(.5,.85,.25,1.1),
+                  rotate 0.3s cubic-bezier(.5,.85,.25,1.1);
+    }
+    .hb-mid {
+      transform-origin: center;
+      transition: rotate 0.3s cubic-bezier(.5,.85,.25,1.8);
+    }
+    .hb-bot {
+      transform-origin: center;
+      transform: translateY(7px);
+      transition: transform 0.3s cubic-bezier(.5,.85,.25,1.1),
+                  rotate 0.3s cubic-bezier(.5,.85,.25,1.1);
+    }
+    .hamburger.open .hb-top { transform: translateY(0); rotate: 315deg; }
+    .hamburger.open .hb-mid { rotate: 45deg; }
+    .hamburger.open .hb-bot { transform: translateY(0); rotate: 135deg; }
 
-    /* Mobile drawer */
+    /* Full-screen mobile menu overlay */
     #mobile-menu {
       position: fixed;
-      top: 0; right: -100%;
-      width: min(340px, 85vw);
-      height: 100vh;
-      background: var(--surface);
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--black);
       z-index: 999;
-      padding: 96px 40px 40px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-      border-left: 1px solid var(--border);
-    }
-    #mobile-menu.open { right: 0; }
-    #mobile-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 998;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    #mobile-overlay.open { opacity: 1; pointer-events: all; }
+    #mobile-menu.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    /* X close button — top right corner */
+    #mobile-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text);
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 300;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+    }
+    #mobile-close:hover { opacity: 1; }
+    /* Staggered link reveal */
     .mobile-link {
       font-family: var(--font-head);
-      font-size: 28px;
-      letter-spacing: 0.06em;
+      font-size: clamp(28px, 8vw, 42px);
+      letter-spacing: 0.03em;
       color: var(--text);
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      transition: color 0.2s ease;
+      padding: 14px 24px;
+      text-align: center;
+      width: 100%;
+      transition: color 0.2s ease, opacity 0.2s ease;
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    #mobile-menu.open .mobile-link {
+      animation: menu-item-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    #mobile-menu.open .mobile-link:nth-child(2) { animation-delay: 0.04s; }
+    #mobile-menu.open .mobile-link:nth-child(3) { animation-delay: 0.08s; }
+    #mobile-menu.open .mobile-link:nth-child(4) { animation-delay: 0.12s; }
+    #mobile-menu.open .mobile-link:nth-child(5) { animation-delay: 0.16s; }
+    #mobile-menu.open .mobile-link:nth-child(6) { animation-delay: 0.20s; }
+    #mobile-menu.open .mobile-link:nth-child(7) { animation-delay: 0.24s; }
+    @keyframes menu-item-in {
+      to { opacity: 1; transform: translateY(0); }
     }
     .mobile-link:hover { color: var(--blue); }
+    /* CTA button */
     .mobile-cta {
       margin-top: 24px;
       background: var(--blue);
@@ -378,10 +472,22 @@
       font-family: var(--font-head);
       font-size: 18px;
       letter-spacing: 0.06em;
-      padding: 14px 24px;
-      border-radius: 3px;
+      padding: 16px 48px;
+      border-radius: 6px;
       text-align: center;
+      display: inline-block;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(16px);
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.2s ease;
     }
+    .mobile-cta:hover { background: var(--blue-dim); }
+    #mobile-menu.open .mobile-cta {
+      animation: menu-item-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.28s forwards;
+    }
+    /* No overlay needed — menu IS the overlay */
+    #mobile-overlay { display: none; }
 
     /* ============================================================
        HERO SECTION — full-bleed van photo background
@@ -408,12 +514,12 @@
       z-index: 0;
     }
 
-    /* Dark overlay: uniform darkness */
+    /* Dark overlay */
     #hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(5, 15, 30, 0.62);
+      background: rgba(4, 12, 24, 0.58);
       z-index: 1;
       pointer-events: none;
     }
@@ -422,7 +528,7 @@
     #hero-honeycomb {
       position: absolute;
       top: 0; left: 0;
-      width: 55%;
+      width: 100%;
       bottom: 0;
       z-index: 2;
       pointer-events: none;
@@ -742,8 +848,8 @@
     .services-grid .service-card:nth-child(5) { grid-column: 4 / span 2; }
 
     .service-card {
-      background: linear-gradient(145deg, #181818 0%, #141414 100%);
-      border: 1px solid rgba(0, 200, 248, 0.08);
+      background: linear-gradient(145deg, #1e2535 0%, #182030 100%);
+      border: 1px solid rgba(0, 200, 248, 0.15);
       border-radius: 8px;
       padding: 52px 36px;
       display: flex;
@@ -792,7 +898,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(0, 200, 248, 0.10);
+      background: rgba(0, 200, 248, 0.18);
       border-radius: 14px;
       color: var(--blue);
       flex-shrink: 0;
@@ -919,7 +1025,7 @@
        ABOUT / OUR TRUCK
     ============================================================ */
     #about {
-      background: #0d0d14;
+      background: #13182a;
       padding: var(--sp-xl) 40px 180px;
       clip-path: polygon(0 60px, 100% 0, 100% calc(100% - 60px), 0 100%);
       margin-top: -60px;
@@ -947,21 +1053,22 @@
     .about-img-inner {
       position: relative;
       display: inline-block;
-      transform: rotate(-2deg);
+      transform: rotate(0deg);
       transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
       width: 100%;
     }
     .about-img-inner:hover { transform: rotate(0deg); }
-    .about-img-inner img { width: 100%; border-radius: 6px; display: block; }
+    .about-img-inner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; border-radius: 6px; display: block; }
+    .about-img-inner { display: block; position: relative; width: 100%; padding-bottom: 110%; }
     .about-img-inner::before {
       content: '';
       position: absolute;
-      inset: -8px;
+      inset: 0;
       border: 2px solid var(--blue);
-      border-radius: 8px;
+      border-radius: 6px;
       opacity: 0.55;
-      transform: rotate(1.5deg);
-      z-index: -1;
+      z-index: 1;
+      pointer-events: none;
     }
     .about-img-inner::after {
       content: '';
@@ -1070,7 +1177,7 @@
       margin-bottom: 12px;
     }
     .why-sub {
-      font-size: 13px;
+      font-size: 16px;
       color: var(--text-muted);
       line-height: 1.65;
     }
@@ -1351,109 +1458,220 @@
     @media (max-width: 720px) {
       :root {
         --nav-h: 60px;
-        --sp-xl: 72px;
-        --sp-lg: 44px;
+        --sp-xl: 64px;
+        --sp-lg: 40px;
+        /* reduced clip offset for mobile — prevents giant invisible gaps */
+        --clip-offset: 32px;
       }
 
       /* ── Navbar ── */
-      #navbar { padding: 0 16px; }
-      .nav-center, .nav-cta { display: none; }
+      #navbar {
+        padding: 0 14px;
+        display: flex !important;
+        grid-template-columns: none !important;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0;
+      }
+      .nav-center { display: none !important; }
+      .nav-cta { display: none !important; visibility: hidden !important; }
       .hamburger { display: flex; }
-
-      /* Logo: shrink text so it doesn't overflow */
-      .nav-logo { font-size: 18px; gap: 8px; }
-      .nav-logo img { width: 36px; height: 36px; }
-
-      /* Lang toggle smaller */
+      /* Logo: shrinks freely, never pushes nav-right */
+      .nav-logo {
+        font-size: 14px;
+        gap: 6px;
+        flex: 1 1 auto;
+        min-width: 0;
+        max-width: 100%;
+        overflow: hidden;
+      }
+      .nav-logo span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: block;
+        min-width: 0;
+      }
+      .nav-logo img { width: 30px; height: 30px; flex-shrink: 0; }
+      /* nav-right: never shrinks, always visible */
+      #navbar .nav-right {
+        flex: 0 0 auto;
+        gap: 8px;
+        min-width: 0;
+        display: flex;
+        align-items: center;
+      }
+      .lang-toggle { flex-shrink: 0; }
       .lang-btn { font-size: 11px; padding: 4px 9px; }
 
       /* ── Hero ── */
-      #hero { min-height: 100dvh; }
-      .hero-content { padding-left: 20px; padding-right: 20px; }
-      /* Push hero content up slightly so it doesn't overlap service bar */
+      #hero { min-height: 100svh; min-height: 100dvh; }
+
+      /* Hero content: vertically centered in the space above service bar */
       .hero-top {
+        top: 50%;
+        transform: translateY(-55%);
+        padding: 0 20px;
         gap: 14px;
-        padding: 0 16px;
-        top: 44%;
-        transform: translateY(-50%);
-        /* ensure bottom of content doesn't hit service bar (~110px tall) */
-        padding-bottom: 0;
-        max-height: calc(100vh - var(--nav-h) - 120px);
-        overflow: visible;
+        max-width: 100%;
       }
-      .hero-sub { font-size: 15px; max-width: 92vw; line-height: 1.55; }
+      .hero-sub {
+        font-size: 15px;
+        max-width: 88vw;
+        line-height: 1.55;
+      }
 
-      /* Service bar: two-column grid on mobile so items don't squish */
-      .hero-divider { padding: 12px 16px; }
+      /* Service bar: always 3 items in a row, shrink text to fit */
+      .hero-divider {
+        padding: 10px 12px;
+      }
       .hero-services-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px 16px;
-        justify-items: center;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 0;
+        align-items: center;
+        justify-content: space-around;
       }
-      .hero-service-label { font-size: 11px; }
-      .hero-service-sub { font-size: 10px; }
-      /* Center the odd third item */
-      .hero-service-item:last-child { grid-column: 1 / -1; }
+      .hero-service-item {
+        flex: 1;
+        min-width: 0;
+        padding: 0 4px;
+      }
+      .hero-service-label {
+        font-size: 10px;
+        letter-spacing: 0.07em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .hero-service-sub {
+        font-size: 9px;
+        letter-spacing: 0.06em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
 
-      /* ── Sections: tighter clip + padding ── */
-      #services { padding: 64px 16px 96px; }
-      #how      { padding: 88px 16px 96px; clip-path: polygon(0 40px, 100% 0, 100% calc(100% - 40px), 0 100%); margin-top: -40px; }
-      #about    { padding: 88px 16px 96px; clip-path: polygon(0 40px, 100% 0, 100% calc(100% - 40px), 0 100%); margin-top: -40px; }
-      #why      { padding: 88px 16px 96px; clip-path: polygon(0 40px, 100% 0, 100% calc(100% - 40px), 0 100%); margin-top: -40px; }
-      #coverage { padding: 88px 16px 96px; clip-path: polygon(0 40px, 100% 0, 100% 100%, 0 100%); margin-top: -40px; }
-      #contact  { padding: 88px 16px 96px; clip-path: polygon(0 40px, 100% 0, 100% calc(100% - 40px), 0 100%); margin-top: -40px; }
-      footer    { margin-top: -40px; padding: 56px 16px 36px; }
+      /* Scroll arrow: hide on mobile so it doesn't overlap service bar */
+      .hero-arrow { display: none; }
+
+      /* ── Diagonal clip sections: use fixed px offset, no % ── */
+      /* Services: no clip-top needed (it's first after hero) */
+      #services {
+        padding: calc(var(--nav-h) + 40px) 16px 80px;
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--clip-offset)), 0 100%);
+      }
+      #how {
+        padding: calc(var(--clip-offset) + 52px) 16px 80px;
+        clip-path: polygon(0 var(--clip-offset), 100% 0, 100% calc(100% - var(--clip-offset)), 0 100%);
+        margin-top: calc(-1 * var(--clip-offset));
+      }
+      #about {
+        padding: calc(var(--clip-offset) + 52px) 16px 80px;
+        clip-path: polygon(0 var(--clip-offset), 100% 0, 100% calc(100% - var(--clip-offset)), 0 100%);
+        margin-top: calc(-1 * var(--clip-offset));
+      }
+      #why {
+        padding: calc(var(--clip-offset) + 52px) 16px 80px;
+        clip-path: polygon(0 var(--clip-offset), 100% 0, 100% calc(100% - var(--clip-offset)), 0 100%);
+        margin-top: calc(-1 * var(--clip-offset));
+      }
+      #coverage {
+        padding: calc(var(--clip-offset) + 52px) 16px 72px;
+        clip-path: polygon(0 var(--clip-offset), 100% 0, 100% 100%, 0 100%);
+        margin-top: calc(-1 * var(--clip-offset));
+      }
+      #contact {
+        padding: calc(var(--clip-offset) + 52px) 16px 80px;
+        clip-path: polygon(0 var(--clip-offset), 100% 0, 100% calc(100% - var(--clip-offset)), 0 100%);
+        margin-top: calc(-1 * var(--clip-offset));
+      }
+      footer {
+        margin-top: calc(-1 * var(--clip-offset));
+        padding: calc(var(--clip-offset) + 40px) 16px 36px;
+      }
 
       /* ── Services grid ── */
-      .services-grid { grid-template-columns: 1fr; }
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
       .services-grid .service-card { grid-column: 1 !important; }
-      .service-card { padding: 36px 24px; gap: 16px; }
-      .service-icon { width: 68px; height: 68px; border-radius: 12px; }
-      .service-icon svg { width: 36px; height: 36px; }
-      .service-icon img { width: 52px; height: 52px; }
+      .service-card { padding: 32px 20px; gap: 14px; }
+      .service-icon { width: 64px; height: 64px; border-radius: 12px; }
+      .service-icon svg { width: 34px; height: 34px; }
+      .service-icon img { width: 48px; height: 48px; }
       .service-name { font-size: 22px; }
-      #services .section-head { margin-bottom: 48px; }
-      #why .section-head { margin-bottom: 40px; }
-      #how .section-head { margin-bottom: 48px; }
+      #services .section-head { margin-bottom: 40px; }
 
       /* ── How it works ── */
-      .steps-row { flex-direction: column; align-items: center; gap: 40px; }
+      .steps-row { flex-direction: column; align-items: center; gap: 36px; }
       .step-connector { display: none; }
-      .step { padding: 0 12px; }
-      .step-num { font-size: 64px; margin-bottom: 16px; }
-      .step-icon-wrap { width: 64px; height: 64px; margin-bottom: 16px; }
+      .step { padding: 0 16px; width: 100%; max-width: 360px; }
+      .step-num { font-size: 60px; margin-bottom: 14px; }
+      .step-icon-wrap { width: 64px; height: 64px; margin-bottom: 14px; }
       .step-title { font-size: 20px; }
-      #how .section-head { margin-bottom: 56px; }
+      #how .section-head { margin-bottom: 44px; }
 
       /* ── About ── */
-      .about-stats { gap: 24px; flex-wrap: wrap; }
-      .about-stat span { font-size: 32px; }
+      .about-stats { gap: 20px; flex-wrap: wrap; }
+      .about-stat span { font-size: 30px; }
       .about-text p { font-size: 15px; }
+      .about-img-wrap { width: 100%; max-width: 100%; }
+      .about-img-inner { transform: rotate(0deg); }
 
       /* ── Why ── */
-      .why-grid { grid-template-columns: 1fr; }
-      .why-stat { font-size: clamp(60px, 16vw, 80px); }
-      .why-box { padding: 36px 24px 32px; }
-      #why .section-head { margin-bottom: 52px; }
+      .why-grid { grid-template-columns: 1fr; gap: 16px; }
+      .why-stat { font-size: clamp(56px, 14vw, 76px); }
+      .why-box { padding: 32px 20px 28px; }
+      #why .section-head { margin-bottom: 40px; }
+
+      /* ── Coverage ── */
+      .pill-row { gap: 10px; }
+      .pill { font-size: 12px; padding: 8px 14px; }
 
       /* ── Contact ── */
-      .contact-phone { font-size: clamp(32px, 9vw, 52px); word-break: break-all; }
+      .contact-phone {
+        font-size: clamp(36px, 10vw, 56px);
+        word-break: keep-all;
+        white-space: nowrap;
+        overflow: visible;
+      }
       .contact-buttons { flex-direction: column; align-items: stretch; gap: 12px; }
       .contact-buttons .btn { justify-content: center; padding: 16px 20px; font-size: 15px; }
 
       /* ── Section titles ── */
-      .section-title { font-size: clamp(36px, 9vw, 56px); }
+      .section-title { font-size: clamp(36px, 8.5vw, 52px); }
+
+      /* ── Booking ── */
+      #booking { padding: calc(var(--clip-offset) + 40px) 16px 60px; }
+      .booking-grid { grid-template-columns: 1fr; gap: 16px; margin-top: 36px; }
+      .booking-block { padding: 20px 16px; }
     }
 
     /* ── 480px: small phone ─────────────────────────────────── */
     @media (max-width: 480px) {
-      :root { --nav-h: 56px; }
+      :root {
+        --nav-h: 56px;
+        --clip-offset: 24px;
+      }
 
-      /* Navbar: tightest */
-      #navbar { padding: 0 14px; }
-      .nav-logo { font-size: 16px; gap: 7px; }
-      .nav-logo img { width: 30px; height: 30px; }
+      /* Navbar */
+      #navbar { padding: 0 12px; }
+      .nav-logo { font-size: 15px; gap: 7px; }
+      .nav-logo img { width: 28px; height: 28px; }
+      #navbar .nav-right { gap: 8px; }
+
+      /* Hero: push content higher to clear service bar */
+      .hero-top {
+        top: 50%;
+        transform: translateY(-58%);
+        padding: 0 16px;
+        gap: 12px;
+      }
+      .hero-eyebrow { font-size: 10px; letter-spacing: 2.5px; }
+      .hero-sub { font-size: 14px; max-width: 92vw; }
 
       /* Hero buttons: stack vertically, full width */
       .hero-buttons {
@@ -1461,79 +1679,149 @@
         align-items: stretch;
         gap: 10px;
         width: 100%;
-        max-width: 320px;
+        max-width: 300px;
       }
       .hero-buttons .btn {
         justify-content: center;
         width: 100%;
-        padding: 15px 16px;
-        font-size: 14px;
+        padding: 14px 12px;
+        font-size: 13px;
       }
-      .hero-top { gap: 12px; }
-      .hero-eyebrow { font-size: 10px; letter-spacing: 3px; }
 
-      /* Service cards: compact */
-      .service-card { padding: 28px 20px; }
-      .service-icon { width: 60px; height: 60px; }
-      .service-icon img { width: 44px; height: 44px; }
+      /* Service bar: tightest, 3 equal columns */
+      .hero-divider { padding: 8px 10px; }
+      .hero-service-label { font-size: 9px; letter-spacing: 0.05em; }
+      .hero-service-sub { font-size: 8px; display: none; }
 
-      /* Step numbers tighter */
-      .step-num { font-size: 52px; }
+      /* Section and clip */
+      #services { padding: calc(var(--nav-h) + 32px) 14px 64px; }
+      #how, #about, #why, #contact {
+        padding: calc(var(--clip-offset) + 44px) 14px 64px;
+        clip-path: polygon(0 var(--clip-offset), 100% 0, 100% calc(100% - var(--clip-offset)), 0 100%);
+        margin-top: calc(-1 * var(--clip-offset));
+      }
+      #coverage {
+        padding: calc(var(--clip-offset) + 44px) 14px 60px;
+        clip-path: polygon(0 var(--clip-offset), 100% 0, 100% 100%, 0 100%);
+        margin-top: calc(-1 * var(--clip-offset));
+      }
+      footer {
+        margin-top: calc(-1 * var(--clip-offset));
+        padding: calc(var(--clip-offset) + 32px) 14px 32px;
+      }
 
-      /* About buttons: stack */
+      /* Service cards compact */
+      .service-card { padding: 24px 16px; gap: 12px; }
+      .service-icon { width: 56px; height: 56px; }
+      .service-icon img { width: 40px; height: 40px; }
+      .service-name { font-size: 20px; }
+      .service-desc { font-size: 13px; }
+
+      /* Steps compact */
+      .step-num { font-size: 48px; }
+      .step { max-width: 300px; }
+
+      /* About buttons: stack full width */
       .about-text > div[style] {
         flex-direction: column !important;
         align-items: stretch !important;
+        gap: 10px !important;
       }
       .about-text > div[style] .btn { justify-content: center; width: 100%; }
+      .about-stats { gap: 16px; }
+      .about-stat span { font-size: 28px; }
 
-      /* Why cards compact */
-      .why-stat { font-size: clamp(56px, 15vw, 72px); }
-      .why-box { padding: 28px 20px 24px; }
+      /* Why compact */
+      .why-stat { font-size: clamp(52px, 14vw, 68px); }
+      .why-box { padding: 24px 16px 20px; }
 
       /* Contact compact */
-      .contact-phone { font-size: clamp(28px, 8vw, 40px); }
+      .contact-phone {
+        font-size: clamp(28px, 8.5vw, 40px);
+        white-space: nowrap;
+      }
 
-      /* Map CTA bar: center everything */
-      .map-cta-bar { justify-content: center; text-align: center; flex-direction: column; align-items: center; gap: 12px; }
+      /* Map */
+      .map-wrap iframe { height: 260px; }
+      .map-cta-bar {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 12px;
+      }
       .map-cta-bar p { text-align: center; }
 
-      /* Booking form: single column for name row */
+      /* Booking */
+      #booking { padding: calc(var(--clip-offset) + 36px) 14px 52px; }
+      .booking-block { padding: 16px 14px; }
       .form-row { grid-template-columns: 1fr; }
       .service-card-grid { grid-template-columns: 1fr 1fr; }
-      /* Allow slight wrap — 2-col grid is fine on mobile */
-      .svc-card { font-size: 11px; padding: 13px 8px; line-height: 1.2; letter-spacing: 0.01em; }
-      /* "Wheel Balance" needs room — swap to 1-col on tiny screens */
+      .svc-card {
+        font-size: 12px;
+        padding: 12px 8px;
+        line-height: 1.25;
+        white-space: normal;
+        word-break: break-word;
+      }
       .time-grid { grid-template-columns: repeat(3, 1fr); }
       .booking-summary { gap: 6px; flex-wrap: wrap; font-size: 11px; }
       .booking-submit { font-size: 15px; }
 
-      /* Booking section padding */
-      #booking { padding: 56px 14px 56px; }
-      .booking-block { padding: 18px; }
+      /* Section titles compact */
+      .section-title { font-size: clamp(32px, 8vw, 44px); }
 
-      /* Footer: tighter */
-      .footer-name { font-size: 28px; }
+      /* Footer compact */
+      .footer-name { font-size: 26px; }
+    }
+
+    /* ── 400px: extra small phones ──────────────────────────── */
+    @media (max-width: 400px) {
+      :root {
+        --nav-h: 52px;
+        --clip-offset: 20px;
+      }
+
+      .nav-logo span { font-size: 14px; }
+      .nav-logo img { width: 28px; height: 28px; }
+
+      .hero-headline { font-size: clamp(38px, 11.5vw, 56px); white-space: normal; word-break: break-word; }
+      .hero-sub { font-size: 13px; }
+      .hero-top { transform: translateY(-60%); }
+
+      .why-stat { font-size: clamp(48px, 13vw, 60px); }
+      .contact-phone { font-size: clamp(26px, 7.5vw, 36px); }
+      .pill { font-size: 11px; padding: 7px 12px; }
+
+      .service-card-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .svc-card { font-size: 12px; padding: 11px 8px; }
+
+      .section-title { font-size: clamp(28px, 7.5vw, 40px); }
+      .footer-name { font-size: 22px; }
     }
 
     /* ── 360px: extra small (budget Android) ───────────────── */
     @media (max-width: 360px) {
       .nav-logo span { display: none; }
-      .hero-headline { font-size: clamp(40px, 12vw, 60px); }
-      .hero-sub { font-size: 14px; }
-      .why-stat { font-size: clamp(48px, 14vw, 60px); }
-      .contact-phone { font-size: clamp(24px, 7.5vw, 36px); }
-      .pill { font-size: 12px; padding: 8px 16px; }
-      /* Single column booking service cards on very small screens */
-      .service-card-grid { grid-template-columns: 1fr; }
-      .svc-card { padding: 12px 14px; font-size: 12px; }
+      .hero-headline { font-size: clamp(36px, 11vw, 52px); white-space: normal; }
+      .hero-sub { font-size: 13px; }
+      .why-stat { font-size: clamp(44px, 12.5vw, 56px); }
+      .contact-phone { font-size: clamp(24px, 7vw, 32px); }
+      .pill { font-size: 11px; padding: 7px 10px; }
+      .section-title { font-size: clamp(26px, 7vw, 36px); }
+    }
+
+    /* ── 320px: absolute minimum — booking cards go single col ── */
+    @media (max-width: 340px) {
+      .service-card-grid { grid-template-columns: 1fr !important; gap: 7px !important; }
+      .svc-card { font-size: 13px !important; padding: 12px 14px !important; }
     }
 
     /* ============================================================
        BOOKING SECTION
     ============================================================ */
     #booking {
-      background: #0a0a0a;
+      background: #111420;
       padding: var(--sp-xl) 40px;
       position: relative;
       overflow: hidden;
@@ -1570,8 +1858,8 @@
     }
 
     .booking-block {
-      background: #141414;
-      border: 1px solid #272727;
+      background: #1a2035;
+      border: 1px solid rgba(0, 200, 248, 0.14);
       border-radius: 10px;
       padding: 24px;
     }
@@ -1591,20 +1879,21 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
+      align-items: stretch;
     }
 
     .svc-card {
-      background: #1a1a1a;
-      border: 1px solid #272727;
+      background: #1e2840;
+      border: 1px solid rgba(0, 200, 248, 0.18);
       border-radius: 10px;
-      padding: 16px 14px;
+      padding: 16px 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: none;
       color: var(--text);
       font-family: 'Barlow Condensed', 'Barlow', sans-serif;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
       letter-spacing: 0.04em;
       text-transform: uppercase;
@@ -1612,6 +1901,9 @@
       text-align: center;
       position: relative;
       overflow: hidden;
+      line-height: 1.3;
+      word-break: break-word;
+      hyphens: auto;
     }
     .svc-card:hover {
       border-color: #0ea5ff;
@@ -1626,6 +1918,24 @@
       border-color: #0ea5ff;
       background: rgba(14, 165, 255, 0.08);
       box-shadow: 0 0 0 1px #0ea5ff inset, 0 4px 24px rgba(14, 165, 255, 0.18);
+    }
+    .svc-card.selected::after {
+      content: '✓';
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #0ea5ff;
+      line-height: 1;
+    }
+    .svc-hint {
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      text-align: right;
+      margin-top: -4px;
+      margin-bottom: 2px;
     }
 
     /* ---- Calendar ---- */
@@ -1726,11 +2036,11 @@
     .cal-day:focus-visible { outline: 2px solid #0ea5ff; outline-offset: 2px; }
     .cal-day.selected {
       background: #0ea5ff;
-      color: #000;
+      color: #fff;
       font-weight: 700;
       border-color: #0ea5ff;
     }
-    .cal-day.selected::after { background: #000; }
+    .cal-day.selected::after { background: #fff; }
 
     /* ---- Time Slots ---- */
     .time-grid {
@@ -1857,7 +2167,7 @@
       width: 100%;
       padding: 15px 24px;
       background: #0ea5ff;
-      color: #000;
+      color: #fff;
       font-family: 'Barlow Condensed', 'Barlow', sans-serif;
       font-size: 16px;
       font-weight: 800;
@@ -1950,13 +2260,15 @@
     /* ---- Booking responsive ---- */
     @media (max-width: 860px) {
       .booking-grid { grid-template-columns: 1fr; }
-      #booking { padding: var(--sp-lg) 24px; }
+      #booking { padding: var(--sp-lg) 20px; }
     }
-    @media (max-width: 480px) {
-      .service-card-grid { grid-template-columns: 1fr 1fr; }
-      .time-grid { grid-template-columns: repeat(3, 1fr); }
-      .form-row { grid-template-columns: 1fr; }
-      .booking-summary { gap: 6px; }
+    /* iOS: prevent auto-zoom on input focus — font-size must be >= 16px */
+    @media (max-width: 768px) {
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
@@ -1971,7 +2283,7 @@
   ============================================================ -->
   <nav id="navbar" role="navigation" aria-label="Main navigation">
     <a href="#hero" class="nav-logo">
-      <img src="brand assets/ChatGPT Image Apr 25, 2026, 06_07_43 PM.png" alt="Jimenez Tire &amp; Brake logo" width="44" height="44" />
+      <img src="brand%20assets/ChatGPT%20Image%20Apr%2025%2C%202026%2C%2006_07_43%20PM.png" alt="Jimenez Tire &amp; Brake logo" width="44" height="44" />
       <span>Jimenez Tire &amp; Brake</span>
     </a>
 
@@ -1991,21 +2303,26 @@
         <button class="lang-btn" id="lang-es" data-lang="es" aria-pressed="false">ES</button>
       </div>
 
-      <a href="tel:7864162069" class="nav-cta btn-hover-target">
+      <a href="tel:7864162069" class="nav-cta btn-hover-target" id="nav-call-btn">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.54-.54a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 16.92z"/>
         </svg>
         <span data-en="Call Now" data-es="Llamar">Call Now</span>
       </a>
 
-      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="hamburger" id="hamburger" role="button" tabindex="0" aria-label="Open menu" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f0f0f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path class="hb-top" d="M4 12L20 12" />
+          <path class="hb-mid" d="M4 12H20" />
+          <path class="hb-bot" d="M4 12H20" />
+        </svg>
+      </div>
     </div>
   </nav>
 
   <div id="mobile-overlay" role="presentation"></div>
-  <div id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+  <div id="mobile-menu" role="dialog" aria-label="Mobile navigation" aria-modal="true">
+    <div id="mobile-close" role="button" tabindex="0" aria-label="Close menu">&#x2715;</div>
     <a href="#services" class="mobile-link" data-en="Services" data-es="Servicios">Services</a>
     <a href="#how" class="mobile-link" data-en="How It Works" data-es="Cómo Funciona">How It Works</a>
     <a href="#about" class="mobile-link" data-en="About Us" data-es="Nosotros">About Us</a>
@@ -2013,7 +2330,9 @@
     <a href="#coverage" class="mobile-link" data-en="Coverage" data-es="Cobertura">Coverage</a>
     <a href="#contact" class="mobile-link" data-en="Contact" data-es="Contacto">Contact</a>
     <a href="#booking" class="mobile-link" data-en="Book Appointment" data-es="Hacer Cita">Book Appointment</a>
-    <a href="tel:7864162069" class="mobile-cta btn-hover-target" data-en="Call Now — (786) 416-2069" data-es="Llamar Ahora — (786) 416-2069">Call Now — (786) 416-2069</a>
+    <a href="tel:7864162069" class="mobile-cta btn-hover-target">
+      <span data-en="(786) 416-2069" data-es="(786) 416-2069">(786) 416-2069</span>
+    </a>
   </div>
 
   <!-- ============================================================
@@ -2201,7 +2520,7 @@
       <div class="about-text reveal-left">
         <p class="section-label" data-en="Our Story" data-es="Nuestra Historia">Our Story</p>
         <h2 class="section-title" id="about-title" data-en="Built for the <span>Road</span>" data-es="Hecho para el <span>Camino</span>">Built for the <span>Road</span></h2>
-        <p data-en="Adrian Jimenez has been working on tires and brakes for over 10 years — and he decided there was a better way. Instead of making you drive to a shop and wait for hours, he brought the shop to you." data-es="Adrian Jimenez lleva más de 10 años trabajando con gomas y frenos — y decidió que había una mejor manera. En vez de hacerte manejar a un taller y esperar horas, él trae el taller a ti.">Adrian Jimenez has been working on tires and brakes for over 10 years — and he decided there was a better way. Instead of making you drive to a shop and wait for hours, he brought the shop to you.</p>
+        <p data-en="Adrian Jimenez grew up working on cars and decided there was a better way. Instead of making you drive to a shop and wait for hours, he brought the shop to you." data-es="Adrian Jimenez creció trabajando en carros y decidió que había una mejor manera. En vez de hacerte manejar a un taller y esperar horas, él trae el taller a ti.">Adrian Jimenez grew up working on cars and decided there was a better way. Instead of making you drive to a shop and wait for hours, he brought the shop to you.</p>
         <p data-en="With a fully stocked service van, Jimenez Tire &amp; Brake rolls to homes, job sites, parking lots, and anywhere across Tampa Bay. Same professional service. Zero wasted time." data-es="Con una van completamente equipada, Jimenez Tire &amp; Brake llega a casas, sitios de trabajo, estacionamientos y cualquier lugar de Tampa Bay. El mismo servicio profesional. Cero tiempo perdido.">With a fully stocked service van, Jimenez Tire &amp; Brake rolls to homes, job sites, parking lots, and anywhere across Tampa Bay. Same professional service. Zero wasted time.</p>
         <p data-en="Serving Tampa, Brandon, Hillsborough County, St. Petersburg, Clearwater, and all surrounding areas — 7 days a week." data-es="Sirviendo Tampa, Brandon, Condado de Hillsborough, St. Petersburg, Clearwater y todas las áreas cercanas — 7 días a la semana.">Serving Tampa, Brandon, Hillsborough County, St. Petersburg, Clearwater, and all surrounding areas — 7 days a week.</p>
         <div class="about-stats">
@@ -2221,7 +2540,7 @@
 
       <div class="about-img-wrap reveal-right">
         <div class="about-img-inner">
-          <img src="images/van2.jpg" alt="Jimenez Tire and Brake service van — rear view" loading="lazy" width="600" height="400"
+          <img src="images/about-new.jpg" alt="Jimenez Tire and Brake service van — rear view" loading="eager" width="600" height="400"
                onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/00C8F8?text=Our+Service+Van'" />
         </div>
       </div>
@@ -2239,9 +2558,9 @@
 
     <div class="why-grid">
       <div class="why-box reveal" style="transition-delay:0ms">
-        <div class="why-stat" data-en="Fast" data-es="Rápido">Fast</div>
-        <div class="why-label" data-en="Response" data-es="Respuesta">Response</div>
-        <p class="why-sub" data-en="We arrive quickly — no waiting around, we come to you fast wherever you are." data-es="Llegamos rápido — sin esperas, venimos a ti donde estés.">We arrive quickly — no waiting around, we come to you fast wherever you are.</p>
+        <div class="why-stat" data-en="SAME-DAY" data-es="MISMO DÍA" style="font-size:clamp(48px,5.5vw,64px)">SAME-DAY</div>
+        <div class="why-label" data-en="SERVICE AVAILABLE" data-es="SERVICIO DISPONIBLE">SERVICE AVAILABLE</div>
+        <p class="why-sub" data-en="Book in the morning, get your tires or brakes handled that same day — no appointments weeks out." data-es="Reserva en la mañana y resuelve tus gomas o frenos ese mismo día — sin citas con semanas de espera." ">Book in the morning, get your tires or brakes handled that same day — no appointments weeks out.</p>
       </div>
       <div class="why-box reveal" style="transition-delay:120ms">
         <div class="why-stat" data-en="7 Days" data-es="7 Días">7 Days</div>
@@ -2345,12 +2664,12 @@
 
           <!-- Service Selection -->
           <div class="booking-block">
-            <p class="booking-eyebrow">SELECT SERVICE</p>
+            <p class="booking-eyebrow">SELECT SERVICE(S)</p>
+            <p class="svc-hint">Select all that apply</p>
             <div class="service-card-grid" id="service-grid">
-              <button class="svc-card btn-hover-target" data-service="New Tires" type="button">New Tires</button>
-              <button class="svc-card btn-hover-target" data-service="Used Tires" type="button">Used Tires</button>
+              <button class="svc-card btn-hover-target" data-service="Tire Replacement" type="button">Tire Replacement</button>
               <button class="svc-card btn-hover-target" data-service="Flat Repair" type="button">Flat Repair</button>
-              <button class="svc-card btn-hover-target" data-service="Wheel Balance" type="button">Wheel Balance</button>
+              <button class="svc-card btn-hover-target" data-service="Wheel Balance" type="button">Balancing</button>
               <button class="svc-card btn-hover-target" data-service="Brakes" type="button">Brakes</button>
               <button class="svc-card btn-hover-target" data-service="Oil Change" type="button">Oil Change</button>
             </div>
@@ -2413,7 +2732,7 @@
               </div>
               <div class="form-row">
                 <div class="form-group">
-                  <label for="b-vehicle">Vehicle (Year, Make, Model)</label>
+                  <label for="b-vehicle">Vehicle</label>
                   <input type="text" id="b-vehicle" name="vehicle" placeholder="2019 Honda Civic" />
                 </div>
                 <div class="form-group">
@@ -2461,7 +2780,7 @@
 
       <!-- Row 1: logo + business name -->
       <div class="footer-brand">
-        <img src="brand assets/ChatGPT Image Apr 25, 2026, 06_07_43 PM.png" alt="Jimenez Tire &amp; Brake logo" class="footer-logo" width="80" height="80" />
+        <img src="brand%20assets/ChatGPT%20Image%20Apr%2025%2C%202026%2C%2006_07_43%20PM.png" alt="Jimenez Tire &amp; Brake logo" class="footer-logo" width="80" height="80" />
         <div>
           <div class="footer-name">Jimenez Tire &amp; <span>Brake</span></div>
           <div class="footer-tagline" data-en="Mobile Tire &amp; Brake Service — Tampa, FL" data-es="Servicio Móvil de Gomas y Frenos — Tampa, FL">Mobile Tire &amp; Brake Service — Tampa, FL</div>
@@ -2583,14 +2902,24 @@
 
   /* MOBILE MENU */
   (function() {
-    const btn     = document.getElementById('hamburger');
-    const menu    = document.getElementById('mobile-menu');
-    const overlay = document.getElementById('mobile-overlay');
-    function open()  { menu.classList.add('open'); overlay.classList.add('open'); btn.classList.add('open'); btn.setAttribute('aria-expanded', 'true');  document.body.style.overflow = 'hidden'; }
-    function close() { menu.classList.remove('open'); overlay.classList.remove('open'); btn.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; }
+    const btn      = document.getElementById('hamburger');
+    const closeBtn = document.getElementById('mobile-close');
+    const menu     = document.getElementById('mobile-menu');
+    function open()  { menu.classList.add('open'); btn.classList.add('open'); btn.setAttribute('aria-expanded', 'true');  document.body.style.overflow = 'hidden'; }
+    function close() { menu.classList.remove('open'); btn.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; }
     btn.addEventListener('click', () => btn.classList.contains('open') ? close() : open());
-    overlay.addEventListener('click', close);
+    btn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.classList.contains('open') ? close() : open(); } });
+    closeBtn.addEventListener('click', close);
+    closeBtn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); close(); } });
     menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  })();
+
+  /* HIDE NAV-CTA ON MOBILE */
+  (function() {
+    const btn = document.getElementById('nav-call-btn');
+    function check() { btn.style.display = window.innerWidth <= 720 ? 'none' : ''; }
+    check();
+    window.addEventListener('resize', check, { passive: true });
   })();
 
   /* SMOOTH SCROLL */
@@ -2641,7 +2970,7 @@
     const MONTH_NAMES = ['January','February','March','April','May','June',
                          'July','August','September','October','November','December'];
 
-    let state = { service: null, dateObj: null, dateStr: null, time: null };
+    let state = { services: new Set(), dateObj: null, dateStr: null, time: null };
     let calYear, calMonth;
 
     // ── DOM refs ──────────────────────────────────────────────
@@ -2688,9 +3017,14 @@
     function bindServices() {
       document.getElementById('service-grid').querySelectorAll('.svc-card').forEach(card => {
         card.addEventListener('click', () => {
-          document.querySelectorAll('.svc-card').forEach(c => c.classList.remove('selected'));
-          card.classList.add('selected');
-          state.service = card.dataset.service;
+          const svc = card.dataset.service;
+          if (state.services.has(svc)) {
+            state.services.delete(svc);
+            card.classList.remove('selected');
+          } else {
+            state.services.add(svc);
+            card.classList.add('selected');
+          }
           updateSummary();
           updateSubmit();
         });
@@ -2719,12 +3053,13 @@
         cell.className = 'cal-day btn-hover-target';
         cell.textContent = d;
 
-        const isPast = calYear < todayY
-          || (calYear === todayY && calMonth < todayM)
-          || (calYear === todayY && calMonth === todayM && d < todayD);
+        const maxDate = new Date(todayY, todayM + 1, todayD); // exactly 1 month out
+        const cellDate = new Date(calYear, calMonth, d);
+        const isPast = cellDate < new Date(todayY, todayM, todayD);
+        const isTooFar = cellDate > maxDate;
         const isToday = calYear === todayY && calMonth === todayM && d === todayD;
 
-        if (isPast) {
+        if (isPast || isTooFar) {
           cell.classList.add('past');
           cell.disabled = true;
         } else {
@@ -2736,10 +3071,20 @@
         calDays.appendChild(cell);
       }
 
+      // compute max month allowed
+      const maxMonth = todayM + 1 > 11 ? 0 : todayM + 1;
+      const maxYear  = todayM + 1 > 11 ? todayY + 1 : todayY;
+      const onMaxMonth = (calYear === maxYear && calMonth === maxMonth);
+
       // update prev btn — disable if showing current month
       calPrev.disabled = (calYear === todayY && calMonth === todayM);
       calPrev.style.opacity = calPrev.disabled ? '0.3' : '1';
       calPrev.style.pointerEvents = calPrev.disabled ? 'none' : '';
+
+      // update next btn — disable if already on the furthest allowed month
+      calNext.disabled = onMaxMonth;
+      calNext.style.opacity = onMaxMonth ? '0.3' : '1';
+      calNext.style.pointerEvents = onMaxMonth ? 'none' : '';
     }
 
     function selectDate(d, ds, cell) {
@@ -2788,8 +3133,9 @@
 
     // ── Summary ───────────────────────────────────────────────
     function updateSummary() {
-      sumServiceT.textContent = state.service || 'No service';
-      sumService.classList.toggle('filled', !!state.service);
+      const hasSvc = state.services.size > 0;
+      sumServiceT.textContent = hasSvc ? [...state.services].join(', ') : 'No service';
+      sumService.classList.toggle('filled', hasSvc);
 
       if (state.dateObj) {
         const opts = { weekday: 'short', month: 'short', day: 'numeric' };
@@ -2812,7 +3158,7 @@
       const address   = document.getElementById('b-address').value.trim();
       const vehicle   = document.getElementById('b-vehicle').value.trim();
       const allFilled = firstName && lastName && phone && address && vehicle;
-      submitBtn.disabled = !(state.service && state.dateStr && state.time && allFilled);
+      submitBtn.disabled = !(state.services.size > 0 && state.dateStr && state.time && allFilled);
     }
 
     // ── Form submit ───────────────────────────────────────────
@@ -2823,7 +3169,8 @@
         ? state.dateObj.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })
         : state.dateStr;
 
-      successMsg.innerHTML = `Hi <strong>${firstName}</strong>! Your <strong>${state.service}</strong> is booked for <strong>${dateLabel}</strong> at <strong>${state.time}</strong>. Adrian will call to confirm shortly.`;
+      const svcList = [...state.services].join(', ');
+      successMsg.innerHTML = `Hi <strong>${firstName}</strong>! Your <strong>${svcList}</strong> is booked for <strong>${dateLabel}</strong> at <strong>${state.time}</strong>. Adrian will call to confirm shortly.`;
 
       formArea.style.display = 'none';
       successArea.classList.add('visible');
@@ -2837,7 +3184,7 @@
 
     // ── Reset ─────────────────────────────────────────────────
     resetBtn.addEventListener('click', () => {
-      state = { service: null, dateObj: null, dateStr: null, time: null };
+      state = { services: new Set(), dateObj: null, dateStr: null, time: null };
 
       // clear service
       document.querySelectorAll('.svc-card').forEach(c => c.classList.remove('selected'));
