@@ -460,6 +460,7 @@
     #mobile-menu.open .mobile-link:nth-child(5) { animation-delay: 0.16s; }
     #mobile-menu.open .mobile-link:nth-child(6) { animation-delay: 0.20s; }
     #mobile-menu.open .mobile-link:nth-child(7) { animation-delay: 0.24s; }
+    #mobile-menu.open .mobile-link:nth-child(8) { animation-delay: 0.28s; }
     @keyframes menu-item-in {
       to { opacity: 1; transform: translateY(0); }
     }
@@ -1102,6 +1103,140 @@
     }
 
     /* ============================================================
+       OUR WORK — GALLERY CAROUSEL
+    ============================================================ */
+    #gallery {
+      background: var(--black);
+      padding: var(--sp-xl) 0 180px;
+      clip-path: polygon(0 60px, 100% 0, 100% calc(100% - 60px), 0 100%);
+      margin-top: -60px;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+    }
+    #gallery .section-head {
+      text-align: center;
+      margin-bottom: 64px;
+      padding: 0 40px;
+    }
+    .gallery-carousel-wrap {
+      position: relative;
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 0 80px;
+    }
+    .gallery-track-outer {
+      overflow: hidden;
+      border-radius: 4px;
+    }
+    .gallery-track {
+      display: flex;
+      gap: 20px;
+      scroll-snap-type: x mandatory;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 8px 4px 24px;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .gallery-track::-webkit-scrollbar { display: none; }
+    .gallery-track.dragging { cursor: grabbing; scroll-snap-type: none; }
+
+    .gallery-card {
+      flex: 0 0 320px;
+      height: 420px;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 200, 248, 0.18);
+      overflow: hidden;
+      position: relative;
+      scroll-snap-align: start;
+      box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.45),
+        0 1px 0 rgba(0, 200, 248, 0.08);
+      transition: border-color 0.35s ease,
+                  box-shadow 0.35s ease,
+                  transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      background: var(--surface);
+    }
+    .gallery-card:hover {
+      border-color: var(--blue);
+      box-shadow:
+        0 0 0 1px rgba(0, 200, 248, 0.30),
+        0 8px 48px rgba(0, 200, 248, 0.30),
+        0 20px 60px rgba(0, 0, 0, 0.5);
+      transform: translateY(-6px);
+    }
+    .gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      pointer-events: none;
+    }
+    .gallery-card:hover img { transform: scale(1.05); }
+
+    /* Arrow nav buttons */
+    .gallery-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(13, 13, 13, 0.90);
+      border: 1.5px solid rgba(0, 200, 248, 0.35) !important;
+      color: #0099FF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: border-color 0.25s ease,
+                  box-shadow 0.25s ease,
+                  transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+                  background 0.25s ease;
+      box-shadow: 0 2px 16px rgba(0, 153, 255, 0.18);
+      flex-shrink: 0;
+    }
+    .gallery-arrow:hover {
+      border-color: #0099FF !important;
+      box-shadow: 0 0 0 3px rgba(0, 153, 255, 0.22), 0 4px 28px rgba(0, 153, 255, 0.45);
+      background: rgba(0, 153, 255, 0.10);
+      transform: translateY(-50%) scale(1.08);
+    }
+    .gallery-arrow:active { transform: translateY(-50%) scale(0.96); }
+    .gallery-arrow:focus-visible { outline: 2px solid #0099FF; outline-offset: 3px; }
+    .gallery-arrow svg { display: block; flex-shrink: 0; }
+    .gallery-arrow-prev { left: 10px; }
+    .gallery-arrow-next { right: 10px; }
+    .gallery-arrow.hidden { opacity: 0; pointer-events: none; }
+
+    /* Dot indicators */
+    .gallery-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 28px;
+    }
+    .gallery-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(0, 200, 248, 0.22);
+      border: none;
+      padding: 0;
+      transition: background 0.25s ease, transform 0.25s ease;
+      cursor: pointer;
+    }
+    .gallery-dot.active {
+      background: #0099FF;
+      transform: scale(1.4);
+    }
+
+    /* ============================================================
        WHY CHOOSE US — giant electric-blue stats
     ============================================================ */
     #why {
@@ -1572,6 +1707,16 @@
         clip-path: polygon(0 var(--clip-offset), 100% 0, 100% calc(100% - var(--clip-offset)), 0 100%);
         margin-top: calc(-1 * var(--clip-offset));
       }
+      #gallery {
+        padding: calc(var(--clip-offset) + 52px) 0 80px;
+        clip-path: polygon(0 var(--clip-offset), 100% 0, 100% calc(100% - var(--clip-offset)), 0 100%);
+        margin-top: calc(-1 * var(--clip-offset));
+      }
+      #gallery .section-head { padding: 0 16px; }
+      .gallery-carousel-wrap { padding: 0 52px; }
+      .gallery-arrow-prev { left: 4px; }
+      .gallery-arrow-next { right: 4px; }
+      .gallery-card { flex: 0 0 260px; height: 340px; }
       #why {
         padding: calc(var(--clip-offset) + 52px) 16px 80px;
         clip-path: polygon(0 var(--clip-offset), 100% 0, 100% calc(100% - var(--clip-offset)), 0 100%);
@@ -1700,6 +1845,13 @@
         clip-path: polygon(0 var(--clip-offset), 100% 0, 100% calc(100% - var(--clip-offset)), 0 100%);
         margin-top: calc(-1 * var(--clip-offset));
       }
+      #gallery {
+        padding: calc(var(--clip-offset) + 44px) 0 64px;
+        clip-path: polygon(0 var(--clip-offset), 100% 0, 100% calc(100% - var(--clip-offset)), 0 100%);
+        margin-top: calc(-1 * var(--clip-offset));
+      }
+      .gallery-card { flex: 0 0 220px; height: 290px; }
+      .gallery-arrow { width: 40px; height: 40px; }
       #coverage {
         padding: calc(var(--clip-offset) + 44px) 14px 60px;
         clip-path: polygon(0 var(--clip-offset), 100% 0, 100% 100%, 0 100%);
@@ -2291,6 +2443,7 @@
       <a href="#services" class="nav-link" data-en="Services" data-es="Servicios">Services</a>
       <a href="#how" class="nav-link" data-en="How It Works" data-es="Cómo Funciona">How It Works</a>
       <a href="#about" class="nav-link" data-en="About" data-es="Nosotros">About</a>
+      <a href="#gallery" class="nav-link" data-en="Gallery" data-es="Galería">Gallery</a>
       <a href="#why" class="nav-link" data-en="Why Us" data-es="Por Qué">Why Us</a>
       <a href="#coverage" class="nav-link" data-en="Coverage" data-es="Cobertura">Coverage</a>
       <a href="#contact" class="nav-link" data-en="Contact" data-es="Contacto">Contact</a>
@@ -2326,6 +2479,7 @@
     <a href="#services" class="mobile-link" data-en="Services" data-es="Servicios">Services</a>
     <a href="#how" class="mobile-link" data-en="How It Works" data-es="Cómo Funciona">How It Works</a>
     <a href="#about" class="mobile-link" data-en="About Us" data-es="Nosotros">About Us</a>
+    <a href="#gallery" class="mobile-link" data-en="Gallery" data-es="Galería">Gallery</a>
     <a href="#why" class="mobile-link" data-en="Why Choose Us" data-es="Por Qué Elegirnos">Why Choose Us</a>
     <a href="#coverage" class="mobile-link" data-en="Coverage" data-es="Cobertura">Coverage</a>
     <a href="#contact" class="mobile-link" data-en="Contact" data-es="Contacto">Contact</a>
@@ -2548,6 +2702,62 @@
   </section>
 
   <!-- ============================================================
+       OUR WORK — GALLERY CAROUSEL
+  ============================================================ -->
+  <section id="gallery" aria-labelledby="gallery-title">
+    <div class="section-head reveal">
+      <p class="section-label" data-en="Our Photos" data-es="Nuestras Fotos">Our Photos</p>
+      <h2 class="section-title" id="gallery-title" data-en="<span>Gallery</span>" data-es="<span>Galería</span>"><span>Gallery</span></h2>
+    </div>
+
+    <div class="gallery-carousel-wrap reveal">
+      <button class="gallery-arrow gallery-arrow-prev" id="gallery-prev" aria-label="Previous photos">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+
+      <div class="gallery-track-outer">
+        <div class="gallery-track" id="gallery-track" role="list">
+
+          <div class="gallery-card" role="listitem">
+            <img src="gallery/WhatsApp Image 2026-04-25 at 5.18.24 PM.jpeg" alt="Service job photo 1" loading="lazy" />
+          </div>
+
+          <div class="gallery-card" role="listitem">
+            <img src="gallery/WhatsApp Image 2026-04-25 at 5.18.25 PM.jpeg" alt="Service job photo 2" loading="lazy" />
+          </div>
+
+          <div class="gallery-card" role="listitem">
+            <img src="gallery/WhatsApp Image 2026-04-26 at 2.27.33 PM.jpeg" alt="Service job photo 3" loading="lazy" />
+          </div>
+
+          <div class="gallery-card" role="listitem">
+            <img src="gallery/WhatsApp Image 2026-04-26 at 2.27.41 PM.jpeg" alt="Service job photo 4" loading="lazy" />
+          </div>
+
+          <div class="gallery-card" role="listitem">
+            <img src="gallery/WhatsApp Image 2026-04-26 at 2.27.41 PM (1).jpeg" alt="Service job photo 5" loading="lazy" />
+          </div>
+
+          <div class="gallery-card" role="listitem">
+            <img src="gallery/WhatsApp Image 2026-04-26 at 2.27.41 PM (2).jpeg" alt="Service job photo 6" loading="lazy" />
+          </div>
+
+          <div class="gallery-card" role="listitem">
+            <img src="gallery/WhatsApp Image 2026-04-26 at 2.27.44 PM.jpeg" alt="The van" loading="lazy" />
+          </div>
+
+        </div>
+      </div>
+
+      <button class="gallery-arrow gallery-arrow-next" id="gallery-next" aria-label="Next photos">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+
+    <div class="gallery-dots" id="gallery-dots" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============================================================
        WHY CHOOSE US
   ============================================================ -->
   <section id="why" aria-labelledby="why-title">
@@ -2711,7 +2921,7 @@
           <!-- Customer Info Form -->
           <div class="booking-block">
             <p class="booking-eyebrow">YOUR INFORMATION</p>
-            <form class="booking-form" id="booking-form" onsubmit="return false;">
+            <form class="booking-form" id="booking-form">
               <div class="form-row">
                 <div class="form-group">
                   <label for="b-first">First Name</label>
@@ -2750,7 +2960,7 @@
                 <span class="summary-item" id="sum-time"><span id="sum-time-text">No time</span></span>
               </div>
 
-              <button type="submit" class="booking-submit btn-hover-target" id="booking-submit" disabled>
+              <button type="button" class="booking-submit btn-hover-target" id="booking-submit" disabled>
                 Confirm Appointment
               </button>
             </form>
@@ -2922,6 +3132,81 @@
     window.addEventListener('resize', check, { passive: true });
   })();
 
+  /* GALLERY CAROUSEL — continuous smooth scroll */
+  (function () {
+    const track    = document.getElementById('gallery-track');
+    const prevBtn  = document.getElementById('gallery-prev');
+    const nextBtn  = document.getElementById('gallery-next');
+    const dotsWrap = document.getElementById('gallery-dots');
+    if (!track) return;
+
+    const SPEED   = 0.45;   /* px per frame at 60fps — tweak for faster/slower */
+    const CARD_GAP = 20;
+    let paused    = false;
+    let rafId     = null;
+
+    /* Hide arrow buttons — not needed for continuous scroll */
+    if (prevBtn) prevBtn.style.display = 'none';
+    if (nextBtn) nextBtn.style.display = 'none';
+    if (dotsWrap) dotsWrap.style.display = 'none';
+
+    /* Duplicate cards to create seamless infinite loop */
+    const origCards = Array.from(track.querySelectorAll('.gallery-card'));
+    origCards.forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    });
+
+    /* Remove scroll-snap so animation runs freely */
+    track.style.scrollSnapType = 'none';
+    track.style.cursor = 'default';
+
+    function getSetWidth() {
+      /* Width of one full set of original cards */
+      return origCards.reduce((sum, c) => sum + c.offsetWidth + CARD_GAP, 0);
+    }
+
+    /* rAF loop — accumulates fractional px so sub-pixel speeds work */
+    let pos = 0;
+    function tick() {
+      if (!paused) {
+        pos += SPEED;
+        const setW = getSetWidth();
+        if (pos >= setW) pos -= setW;
+        track.scrollLeft = pos;
+      }
+      rafId = requestAnimationFrame(tick);
+    }
+
+    /* Pause on hover */
+    const wrap = track.closest('.gallery-carousel-wrap') || track;
+    wrap.addEventListener('mouseenter', () => { paused = true; });
+    wrap.addEventListener('mouseleave', () => { paused = false; });
+
+    /* Touch drag support */
+    let isDragging = false, startX = 0, scrollStart = 0;
+
+    wrap.addEventListener('touchstart', e => {
+      isDragging  = true;
+      paused      = true;
+      startX      = e.touches[0].clientX;
+      scrollStart = track.scrollLeft;
+    }, { passive: true });
+
+    wrap.addEventListener('touchmove', e => {
+      if (!isDragging) return;
+      track.scrollLeft = scrollStart - (e.touches[0].clientX - startX);
+    }, { passive: true });
+
+    wrap.addEventListener('touchend', () => {
+      isDragging = false;
+      paused     = false;
+    });
+
+    rafId = requestAnimationFrame(tick);
+  })();
+
   /* SMOOTH SCROLL */
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
@@ -3002,7 +3287,7 @@
     updateSummary();
     updateSubmit();
 
-    ['b-first','b-last','b-phone','b-address','b-vehicle'].forEach(id => {
+    ['b-first','b-phone','b-address','b-vehicle'].forEach(id => {
       document.getElementById(id).addEventListener('input', updateSubmit);
     });
 
@@ -3157,20 +3442,43 @@
       const phone     = document.getElementById('b-phone').value.trim();
       const address   = document.getElementById('b-address').value.trim();
       const vehicle   = document.getElementById('b-vehicle').value.trim();
-      const allFilled = firstName && lastName && phone && address && vehicle;
+      const allFilled = firstName && phone && address && vehicle;
       submitBtn.disabled = !(state.services.size > 0 && state.dateStr && state.time && allFilled);
     }
 
     // ── Form submit ───────────────────────────────────────────
-    document.getElementById('booking-form').addEventListener('submit', () => {
+    submitBtn.addEventListener('click', () => {
       if (submitBtn.disabled) return;
-      const firstName = document.getElementById('b-first').value.trim() || 'there';
+      const firstName = document.getElementById('b-first').value.trim();
+      const lastName  = document.getElementById('b-last').value.trim();
+      const phone     = document.getElementById('b-phone').value.trim();
+      const address   = document.getElementById('b-address').value.trim();
+      const vehicle   = document.getElementById('b-vehicle').value.trim();
+      const notes     = document.getElementById('b-notes').value.trim();
       const dateLabel = state.dateObj
         ? state.dateObj.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })
         : state.dateStr;
-
       const svcList = [...state.services].join(', ');
-      successMsg.innerHTML = `Hi <strong>${firstName}</strong>! Your <strong>${svcList}</strong> is booked for <strong>${dateLabel}</strong> at <strong>${state.time}</strong>. Adrian will call to confirm shortly.`;
+
+      // Build WhatsApp message with all booking details
+      const lines = [
+        '🛞 *New Appointment Request — Jimenez Tire & Brake*',
+        '',
+        `*Name:* ${[firstName, lastName].filter(Boolean).join(' ')}`,
+        `*Phone:* ${phone}`,
+        `*Service(s):* ${svcList}`,
+        `*Date:* ${dateLabel}`,
+        `*Time:* ${state.time}`,
+        `*Address:* ${address}`,
+        `*Vehicle:* ${vehicle}`,
+      ];
+      if (notes) lines.push(`*Notes:* ${notes}`);
+
+      const waText = encodeURIComponent(lines.join('\n'));
+      // Adrian's number in international format (US +1 786 416 2069)
+      window.open('https://wa.me/17864162069?text=' + waText, '_blank');
+
+      successMsg.innerHTML = `Hi <strong>${firstName}</strong>! Your <strong>${svcList}</strong> request for <strong>${dateLabel}</strong> at <strong>${state.time}</strong> has been sent to Adrian on WhatsApp. He'll confirm shortly.`;
 
       formArea.style.display = 'none';
       successArea.classList.add('visible');
