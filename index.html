@@ -3201,7 +3201,9 @@
 
     wrap.addEventListener('touchend', () => {
       isDragging = false;
-      paused     = false;
+      /* Sync pos to where the user dragged so auto-scroll resumes from there */
+      pos = track.scrollLeft;
+      paused = false;
     });
 
     rafId = requestAnimationFrame(tick);
