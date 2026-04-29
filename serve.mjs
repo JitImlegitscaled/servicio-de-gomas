@@ -31,9 +31,9 @@ const SECURITY_HEADERS = {
     "default-src 'self'",
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tailwindcss.com",
     "font-src 'self' https://fonts.gstatic.com",
-    "script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com",
+    "script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://va.vercel-scripts.com",
     "img-src 'self' data: https://placehold.co",
-    "connect-src 'self'",
+    "connect-src 'self' https://va.vercel-analytics.com",
     "frame-ancestors 'none'",
   ].join('; '),
 };
